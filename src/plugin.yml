@@ -1,0 +1,8 @@
+name: AssassinMinigame
+main: tenny1028.assassin.AssassinMinigame
+version: 1.0
+
+commands:
+  assassin:
+    description: Controls the Assassin Minigame
+    usage: None
