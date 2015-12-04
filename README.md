@@ -40,5 +40,4 @@ features have not been added yet.
 ### Planned Features
 AssassinMinigame is only at version 1.0. It has room for improvement. Here are some planned features:
 
-* Leaderboard system
 * Maps

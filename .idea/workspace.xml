@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c28b3a1e-d01f-45c4-9c41-4ee906bdb3d3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/AssassinMinigame.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/AssassinMinigame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl$1.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl$2.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/events/PlayerEvents.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/events/PlayerEvents.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/plugin.yml" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/plugin.yml" />
     </list>
     <ignored path="AssassinMinigame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -121,8 +115,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.69902915">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.79611653">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -519,7 +513,13 @@
       <option name="project" value="LOCAL" />
       <updated>1449251528486</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update README.md">
+      <created>1449252618165</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1449252618165</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -554,10 +554,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update README.md" />
     <MESSAGE value="Fully implemented &quot;/assassin leaderboards&quot; command" />
     <MESSAGE value="Scoreboard now updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scoreboard now updates" />
+    <MESSAGE value="Update README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -647,8 +647,8 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69902915">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.79611653">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
