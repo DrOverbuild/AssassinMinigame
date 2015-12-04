@@ -14,9 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by jasper on 9/15/15.
@@ -64,8 +62,23 @@ public class AssassinCommand implements CommandExecutor {
 				}
 				return true;
 			}else if(args[0].equalsIgnoreCase("leaderboards")){
-				p.sendMessage(ChatColor.RED + "This command is not ready yet!");
-				//List<OfflinePlayer> top5 = getTopFivePlayersFromScoreboard();
+				//p.sendMessage(ChatColor.RED + "This command is not ready yet!");
+				List<OfflinePlayer> top5 = getTopFivePlayersFromScoreboard();
+				Scoreboard sb = controller.getServer().getScoreboardManager().getMainScoreboard();
+				Objective ob = sb.getObjective("assassinScore");
+				p.sendMessage("------------ " + ChatColor.AQUA + "Top 5 Scores For Assassin" + ChatColor.RESET + " ------------");
+				for(OfflinePlayer player:top5){
+					p.sendMessage(ChatColor.AQUA + "" + ChatColor.BOLD + player.getName() + ChatColor.RESET + ": " +
+							ob.getScore(player).getScore() + " points");
+				}
+
+				if(!top5.contains(p)){
+					p.sendMessage(" ................");
+					p.sendMessage(ChatColor.AQUA + "" + ChatColor.BOLD + p.getName() + ChatColor.RESET + ": " +
+							ob.getScore(p).getScore() + " points");
+				}
+
+				p.sendMessage("-------------------------------------------------");
 				return true;
 			}
 		}
@@ -92,8 +105,7 @@ public class AssassinCommand implements CommandExecutor {
 	public List<OfflinePlayer> getTopFivePlayersFromScoreboard(){
 		Scoreboard sb = controller.getServer().getScoreboardManager().getMainScoreboard();
 		Objective ob = sb.getObjective("assassinScore");
-
-		ArrayList<OfflinePlayer> allPlayers = new ArrayList<>(controller.getServer().getOnlinePlayers());
+		List<OfflinePlayer> allPlayers = Arrays.asList(controller.getServer().getOfflinePlayers()); //new ArrayList<>(controller.getServer().getOfflinePlayers());
 		allPlayers.sort((o1, o2) -> {
 			if(ob.getScore(o1).getScore() < ob.getScore(o2).getScore()){
 				return 1;
@@ -102,9 +114,13 @@ public class AssassinCommand implements CommandExecutor {
 			}
 		});
 
-		List<OfflinePlayer> top5 = allPlayers.subList(0,4);
+		if(allPlayers.size() > 5) {
+			return allPlayers.subList(0, 5);
+		}else{
+			return  allPlayers;
+		}
 
-		return top5;
+
 	}
 
 	public void sendHelp(Player p){
