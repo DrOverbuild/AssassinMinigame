@@ -11,6 +11,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Team;
 import tenny1028.assassin.events.PlayerEvents;
 
@@ -54,6 +56,20 @@ public class AssassinMinigame extends JavaPlugin{
 
 	public Team getTeam() {
 		return team;
+	}
+
+	public Objective getAssassinScore(){
+		return getServer().getScoreboardManager().getMainScoreboard().getObjective("assassinScore");
+	}
+
+	public void addToAssassinScore(Player p, int amount){
+		Score s = getAssassinScore().getScore(p);
+		s.setScore(s.getScore() + amount);
+	}
+
+	public void takeFromAssassinScore(Player p, int amount){
+		Score s = getAssassinScore().getScore(p);
+		s.setScore(s.getScore() - amount);
 	}
 
 	public void setupAssassin(){

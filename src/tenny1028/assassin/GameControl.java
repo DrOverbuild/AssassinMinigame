@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Score;
 import org.bukkit.util.Vector;
 
 import java.util.*;
@@ -174,8 +175,14 @@ public class GameControl {
 		try {
 			if (winner == 0) {
 				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "The civilians won!");
+				for (OfflinePlayer p:controller.getTeam().getPlayers()){
+					if(assassin != p.getPlayer()){
+						controller.addToAssassinScore(p.getPlayer(),5);
+					}
+				}
 			} else if (winner == 1) {
 				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "The assassin, " + ChatColor.RED + assassin.getName() + ChatColor.AQUA + ", has won!");
+				controller.addToAssassinScore(assassin,5);
 			}
 
 			for (OfflinePlayer p : controller.team.getPlayers()) {

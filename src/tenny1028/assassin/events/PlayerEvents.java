@@ -145,16 +145,18 @@ public class PlayerEvents implements Listener {
 		damaged.getInventory().clear();
 		if (controller.getGameControl().getAssassin().equals(damager)) {
 			controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "The Assassin has killed " + damaged.getName() + "!");
+			controller.addToAssassinScore(damager,2);
 			if (controller.getGameControl().alivePlayers().size() == 1) {
 				controller.getGameControl().endGame(1);
 			}
 		}else if(controller.getGameControl().getAssassin().equals(damaged)){
 			controller.broadcastToAllPlayersPlayingAssassin(ChatColor.RED + damaged.getName() + ChatColor.AQUA
 					                               + " was slain by " + ChatColor.GREEN + damager.getName() );
+			controller.addToAssassinScore(damager,5);
 			controller.getGameControl().endGame(0);
 		}else{
 			controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + damaged.getName() + " has died!");
-
+			controller.takeFromAssassinScore(damager,10);
 			if(controller.alivePlayers().size() == 1){
 				controller.getGameControl().endGame(1);
 			}
