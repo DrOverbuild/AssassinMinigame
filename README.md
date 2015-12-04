@@ -19,6 +19,14 @@ type "/assassin join". The server will announce that this player is playing Assa
 appended to his username on the tab list. Once there are at least three players playing Assassin, the game coordinator
 (or an operator) must type "/assassin start" to start the game.
 
+### Scores
+Players are rewarded for winning Assassin. Civilians who kill other civilians with their bows will be punished. The
+civilian who kills the assassin will be rewarded 10 points, and every other civilian will be rewarded 5. If the assassin
+wins, he will be rewarded 5 points, plus 2 points for each players he kills. If a civilian shoots another civilian with
+a bow, the killer will lose 10 points.
+
+The top five scores plus your own can be viewed by typing "/assassin leaderboards"
+
 ### The Game Coordinator
 If there are no players in the minigame, the first one who does becomes the game coordinator. This player has the
 ability to start the game. The game coordinator will be able to do much more than this in the future, such as kick a
