@@ -121,6 +121,7 @@ public class PlayerEvents implements Listener {
 		if(damaged == null || damager == null) return;
 
 		if(controller.getGameControl().isCurrentlyInProgress()) {
+			controller.getLogger().info("killPlayer("+damaged.getName()+","+damager.getName()+");");
 			killPlayer(damaged, damager);
 		}
 	}
@@ -190,7 +191,7 @@ public class PlayerEvents implements Listener {
 							ItemMeta m = infinityBow.getItemMeta();
 							m.setLore(Collections.singletonList(GameControl.LORE_MESSAGE));
 							infinityBow.setItemMeta(m);
-							if(!e.getPlayer().getInventory().contains(infinityBow)){
+							if(!(e.getPlayer().getInventory().contains(infinityBow)&&e.getPlayer().getInventory().contains(Material.ARROW))){
 								e.setCancelled(false);
 							}
 						}else{
