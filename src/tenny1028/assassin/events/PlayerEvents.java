@@ -23,10 +23,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import tenny1028.assassin.AssassinMinigame;
@@ -46,7 +43,19 @@ public class PlayerEvents implements Listener {
 
 	@EventHandler
 	public void onPlayerLeave(PlayerQuitEvent e){
-		controller.removePlayerFromGame(e.getPlayer());
+		controller.removePlayerFromGame(e.getPlayer(),false);
+	}
+
+	@EventHandler
+	public void onPlayerKick(PlayerKickEvent e){
+		controller.removePlayerFromGame(e.getPlayer(),false);
+	}
+
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent e){
+		if(controller.playerIsPlayingAssassin(e.getPlayer())){
+			controller.fullyRemovePlayerFromGame(e.getPlayer());
+		}
 	}
 
 	@EventHandler
@@ -100,7 +109,6 @@ public class PlayerEvents implements Listener {
 
 		if(entityIsPlayer(e.getEntity())){
 			damaged = (Player)e.getEntity();
-
 			if(controller.playerIsPlayingAssassin(damaged)){
 				e.setCancelled(true);
 			}else{
@@ -120,8 +128,7 @@ public class PlayerEvents implements Listener {
 
 		if(damaged == null || damager == null) return;
 
-		if(controller.getGameControl().isCurrentlyInProgress()) {
-			controller.getLogger().info("killPlayer("+damaged.getName()+","+damager.getName()+");");
+		if(controller.getGameControl().isCurrentlyInProgress()&&!damaged.equals(damager)) {
 			killPlayer(damaged, damager);
 		}
 	}
@@ -144,22 +151,35 @@ public class PlayerEvents implements Listener {
 			}
 		}
 		damaged.getInventory().clear();
-		if (controller.getGameControl().getAssassin().equals(damager)) {
-			controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "The Assassin has killed " + damaged.getName() + "!");
-			controller.addToAssassinScore(damager,2);
-			if (controller.getGameControl().alivePlayers().size() == 1) {
-				controller.getGameControl().endGame(1);
+		if(damager != null) {
+			if (controller.getGameControl().getAssassin().equals(damager)) {
+				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "The Assassin has killed " + damaged.getName() + "!");
+				controller.addToAssassinScore(damager, 2);
+				if (controller.getGameControl().alivePlayers().size() == 1) {
+					controller.getGameControl().endGame(1);
+				}
+			} else if (controller.getGameControl().getAssassin().equals(damaged)) {
+				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.RED + damaged.getName() + ChatColor.AQUA
+						+ " was slain by " + ChatColor.GREEN + damager.getName());
+				controller.addToAssassinScore(damager, 5);
+				controller.getGameControl().endGame(0);
+			} else {
+				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + damaged.getName() + " was shot by " + damager.getName() + "!");
+				controller.takeFromAssassinScore(damager, 10);
+				if (controller.alivePlayers().size() == 1) {
+					controller.getGameControl().endGame(1);
+					return;
+				}
+				killPlayer(damager,null);
 			}
-		}else if(controller.getGameControl().getAssassin().equals(damaged)){
-			controller.broadcastToAllPlayersPlayingAssassin(ChatColor.RED + damaged.getName() + ChatColor.AQUA
-					                               + " was slain by " + ChatColor.GREEN + damager.getName() );
-			controller.addToAssassinScore(damager,5);
-			controller.getGameControl().endGame(0);
 		}else{
-			controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + damaged.getName() + " has died!");
-			controller.takeFromAssassinScore(damager,10);
-			if(controller.alivePlayers().size() == 1){
-				controller.getGameControl().endGame(1);
+			controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + damaged.getName() + " died!");
+			if (controller.alivePlayers().size() == 1) {
+				if (controller.getGameControl().getAssassin().equals(damaged)) {
+					controller.getGameControl().endGame(0);
+				}else {
+					controller.getGameControl().endGame(1);
+				}
 			}
 		}
 	}
@@ -243,5 +263,21 @@ public class PlayerEvents implements Listener {
 
 	public boolean entityIsPlayer(Entity e){
 		return e.getType().equals(EntityType.PLAYER);
+	}
+
+	@EventHandler
+	public void onPlayerMove(PlayerMoveEvent e){
+		if(controller.playerIsPlayingAssassin(e.getPlayer())) {
+			if(e.getPlayer().getGameMode().equals(GameMode.ADVENTURE)) {
+				if(controller.getGameControl().isCurrentlyInProgress()){
+				if (e.getTo().getBlock().getType().equals(Material.WATER) ||
+						e.getTo().getBlock().getType().equals(Material.STATIONARY_WATER) ||
+						e.getTo().getBlock().getType().equals(Material.STATIONARY_LAVA) ||
+						e.getTo().getBlock().getType().equals(Material.LAVA)) {
+					killPlayer(e.getPlayer(), null);
+				}
+				}
+			}
+		}
 	}
 }

@@ -5,9 +5,8 @@
 
 package tenny1028.assassin;
 
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.*;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,14 +23,24 @@ import java.util.Set;
  */
 public class AssassinMinigame extends JavaPlugin{
 	Player currentCoordinator = null;
-	Team team;
+//	Team team;
 	AssassinCommand cmdExec;
 	PlayerEvents pEvents;
 	GameControl gc;
+	Location spawn;
 
 	@Override
 	public void onEnable() {
 		setupAssassin();
+	}
+
+	@Override
+	public void onDisable() {
+		for(OfflinePlayer p:getTeam().getPlayers()){
+			if(p.isOnline()) {
+				removePlayerFromGame(p.getPlayer());
+			}
+		}
 	}
 
 	public void setCurrentCoordinator(Player currentCoordinator) {
@@ -55,7 +64,7 @@ public class AssassinMinigame extends JavaPlugin{
 	}
 
 	public Team getTeam() {
-		return team;
+		return getServer().getScoreboardManager().getMainScoreboard().getTeam("Assassin");
 	}
 
 	public Objective getAssassinScore(){
@@ -77,13 +86,8 @@ public class AssassinMinigame extends JavaPlugin{
 			getServer().getScoreboardManager().getMainScoreboard().registerNewTeam("Assassin");
 		}
 
-		team = getServer().getScoreboardManager().getMainScoreboard().getTeam("Assassin");
-		team.setPrefix(ChatColor.AQUA + "");
-		team.setSuffix(" (In Minigame)");
-
-		for(OfflinePlayer p:team.getPlayers()){
-			team.removePlayer(p);
-		}
+		getTeam().setPrefix(ChatColor.AQUA + "");
+		getTeam().setSuffix(" (Assassin)");
 
 		if(getServer().getScoreboardManager().getMainScoreboard().getObjective("assassinScore")==null) {
 			getServer().getScoreboardManager().getMainScoreboard().registerNewObjective("assassinScore","");
@@ -92,20 +96,16 @@ public class AssassinMinigame extends JavaPlugin{
 		cmdExec = new AssassinCommand(this);
 		pEvents = new PlayerEvents(this);
 
-		if(cmdExec == null){
-			getLogger().warning("cmdExec is null!");
-		}
-
-		if(getCommand("assassin") == null){
-			getLogger().warning("Unable to find command assassin!");
-		}
 		getCommand("assassin").setExecutor(cmdExec);
 		getServer().getPluginManager().registerEvents(pEvents, this);
 		gc = new GameControl(this);
+
+		saveConfig();
+		spawn = getLocationFromConfig(getConfig());
 	}
 
 	public boolean playerIsPlayingAssassin(Player p){
-		return team.hasPlayer(p);
+		return getTeam().hasPlayer(p);
 	}
 
 	/**
@@ -123,7 +123,12 @@ public class AssassinMinigame extends JavaPlugin{
 			return false;
 		}
 
-		team.addPlayer(p);
+		getTeam().addPlayer(p);
+
+		if(getSpawn() != null) {
+			p.teleport(getSpawn());
+		}
+
 		if(getGameControl().isCurrentlyInProgress()){
 			p.setGameMode(GameMode.SPECTATOR);
 		}else{
@@ -137,13 +142,17 @@ public class AssassinMinigame extends JavaPlugin{
 			}
 		}
 
-		if(team.getSize() == 1){
+		if(getTeam().getSize() == 1){
 			setCurrentCoordinator(p);
 		}
 		return false;
 	}
 
 	public boolean removePlayerFromGame(Player p){
+		return removePlayerFromGame(p,true);
+	}
+
+	public boolean removePlayerFromGame(Player p, boolean fullyRemovePlayer){
 		if(!playerIsPlayingAssassin(p)){ // If player is not playing Assassin
 			return true;                 // return true
 		}
@@ -156,7 +165,7 @@ public class AssassinMinigame extends JavaPlugin{
 			}
 		}
 
-		if(team.getSize() == 1){
+		if(getTeam().getSize() == 1){
 			setCurrentCoordinator(null);
 			setCoordinator = false;
 		}
@@ -169,7 +178,6 @@ public class AssassinMinigame extends JavaPlugin{
 			}
 		}
 
-		team.removePlayer(p);
 		clearMinigameRelatedItems(p);
 		p.setGameMode(GameMode.SURVIVAL);
 		p.sendMessage(ChatColor.AQUA + "You are no longer playing Assassin.");
@@ -180,13 +188,33 @@ public class AssassinMinigame extends JavaPlugin{
 		}
 
 		if(setCoordinator){
-			setCurrentCoordinator(((OfflinePlayer)team.getPlayers().toArray()[0]).getPlayer());
+
+			for(OfflinePlayer offlinePlayer : getTeam().getPlayers()){
+				if(offlinePlayer.isOnline() && p.getName() != offlinePlayer.getName()){
+					setCurrentCoordinator(offlinePlayer.getPlayer());
+					break;
+				}
+			}
 		}
+
+		if(fullyRemovePlayer){
+			fullyRemovePlayerFromGame(p);
+		}
+
 		return false;
 	}
 
+	public void fullyRemovePlayerFromGame(Player p){
+		getTeam().removePlayer(p);
+		if(p.getBedSpawnLocation() != null){
+			p.teleport(p.getBedSpawnLocation());
+		}else{
+			p.teleport(p.getWorld().getSpawnLocation());
+		}
+	}
+
 	public void broadcastToAllPlayersPlayingAssassin(String message){
-		for(OfflinePlayer p : team.getPlayers()){
+		for(OfflinePlayer p : getTeam().getPlayers()){
 			if(p.isOnline()) {
 				p.getPlayer().sendMessage(message);
 			}
@@ -225,6 +253,50 @@ public class AssassinMinigame extends JavaPlugin{
 			}
 		}
 		return false;
+	}
+
+	public Location getSpawn() {
+		return spawn;
+	}
+
+	public void setSpawn(Location spawn) {
+		this.spawn = spawn;
+		saveLocationToConfig(getConfig(),spawn);
+		saveConfig();
+	}
+
+	public static Location getLocationFromConfig(FileConfiguration config){
+		if(!config.contains("spawn")){
+			return null;
+		}
+
+		String worldName = config.getString("spawn.world","world");
+		World world = Bukkit.getWorld(worldName);
+
+		if(world == null){
+			return null;
+		}
+
+		double x = config.getDouble("spawn.x",0);
+		double y = config.getDouble("spawn.y",0);
+		double z = config.getDouble("spawn.z",0);
+		float yaw = (float)config.getInt("spawn.yaw",0);
+		float pitch = (float)config.getInt("spawn.pitch");
+
+		return new Location(world,x,y,z,yaw,pitch);
+	}
+
+	public static void saveLocationToConfig(FileConfiguration config, Location loc){
+		if(loc == null){
+			config.set("spawn",null);
+		}
+
+		config.set("spawn.world",loc.getWorld().getName());
+		config.set("spawn.x",loc.getX());
+		config.set("spawn.y",loc.getY());
+		config.set("spawn.z",loc.getZ());
+		config.set("spawn.yaw",loc.getYaw());
+		config.set("spawn.pitch",loc.getPitch());
 	}
 
 }

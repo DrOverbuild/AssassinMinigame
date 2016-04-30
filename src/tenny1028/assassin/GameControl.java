@@ -25,7 +25,7 @@ public class GameControl {
 	public static final String LORE_MESSAGE = "For use with the Assassin minigame.";
 	public static final int ITEM_SPAWN_DISTANCE = 100;
 	public static final int ITEM_SPAWN_FREQUENCY = 15;
-	public static final int NUMBER_OF_ITEMS_TO_SPAWN = 2;
+	public static final int NUMBER_OF_ITEMS_TO_SPAWN = 4;
 
 	AssassinMinigame controller;
 	boolean currentlyInProgress;
@@ -48,7 +48,7 @@ public class GameControl {
 	}
 
 	public void startCountdown(Player starter){
-		if(controller.team.getSize()<3){
+		if(controller.getTeam().getSize()<3){
 			controller.currentCoordinator.sendMessage(ChatColor.RED + "You do not have enough players to start.");
 			return;
 		}
@@ -58,10 +58,16 @@ public class GameControl {
 			return;
 		}
 
-		ArrayList<OfflinePlayer> players = new ArrayList<>(controller.team.getPlayers());
+		ArrayList<OfflinePlayer> players = new ArrayList<>(controller.getTeam().getPlayers());
 
 		for(OfflinePlayer p:players){
-			p.getPlayer().teleport(starter);
+			if(p.isOnline()) {
+				if (controller.getSpawn() != null) {
+					p.getPlayer().teleport(controller.getSpawn());
+				} else {
+					p.getPlayer().teleport(starter);
+				}
+			}
 		}
 
 		preGameCountdownStarted = true;
@@ -87,7 +93,13 @@ public class GameControl {
 		currentlyInProgress = true;
 		Random r = new Random();
 
-		ArrayList<OfflinePlayer> players = new ArrayList<>(controller.team.getPlayers());
+		ArrayList<OfflinePlayer> players = new ArrayList<>(controller.getTeam().getPlayers());
+
+		for(OfflinePlayer p : controller.getTeam().getPlayers()){
+			if(!p.isOnline()){
+				players.remove(p);
+			}
+		}
 
 		for(OfflinePlayer p:players){
 			p.getPlayer().getInventory().clear();
@@ -108,8 +120,6 @@ public class GameControl {
 
 		controller.getServer().dispatchCommand(controller.getServer().getConsoleSender(), "title " + assassin.getName() + " subtitle \"Kill everyone!\"");
 		controller.getServer().dispatchCommand(controller.getServer().getConsoleSender(), "title " + assassin.getName() + " title \"You're the assassin\"");
-
-		// TODO: Add bow with infinity enchantment, arrow, sword, and tracking compass to assassin's inventory
 
 		ItemStack infinityBow = new ItemStack(Material.BOW);
 		infinityBow.addEnchantment(Enchantment.ARROW_INFINITE, 1);
@@ -176,8 +186,10 @@ public class GameControl {
 			if (winner == 0) {
 				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "The civilians won!");
 				for (OfflinePlayer p:controller.getTeam().getPlayers()){
-					if(assassin != p.getPlayer()){
-						controller.addToAssassinScore(p.getPlayer(),5);
+					if(p.isOnline()) {
+						if (assassin != p.getPlayer()) {
+							controller.addToAssassinScore(p.getPlayer(), 5);
+						}
 					}
 				}
 			} else if (winner == 1) {
@@ -185,10 +197,12 @@ public class GameControl {
 				controller.addToAssassinScore(assassin,5);
 			}
 
-			for (OfflinePlayer p : controller.team.getPlayers()) {
-				p.getPlayer().teleport(assassin);
-				p.getPlayer().setGameMode(GameMode.ADVENTURE);
-				p.getPlayer().getInventory().clear();
+			for (OfflinePlayer p : controller.getTeam().getPlayers()) {
+				if(p.isOnline()) {
+					p.getPlayer().teleport(assassin);
+					p.getPlayer().setGameMode(GameMode.ADVENTURE);
+					p.getPlayer().getInventory().clear();
+				}
 			}
 
 			for(Item i : assassin.getWorld().getEntitiesByClass(Item.class)){
@@ -207,8 +221,10 @@ public class GameControl {
 		Set<Player> alivePlayers = new HashSet<>();
 
 		for(OfflinePlayer p:controller.getTeam().getPlayers()){
-			if(p.getPlayer().getGameMode().equals(GameMode.ADVENTURE)){
-				alivePlayers.add(p.getPlayer());
+			if(p.isOnline()) {
+				if (p.getPlayer().getGameMode().equals(GameMode.ADVENTURE)) {
+					alivePlayers.add(p.getPlayer());
+				}
 			}
 		}
 		return alivePlayers;

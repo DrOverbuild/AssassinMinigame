@@ -80,6 +80,14 @@ public class AssassinCommand implements CommandExecutor {
 
 				p.sendMessage("-------------------------------------------------");
 				return true;
+			}else if(args[0].contains("spawn")){
+				if(p.hasPermission("assassin.op")){
+					controller.setSpawn(p.getLocation());
+					p.sendMessage(ChatColor.GRAY + "Spawn set!");
+				}else{
+					p.sendMessage(ChatColor.RED + "You do not have permission.");
+				}
+				return true;
 			}
 		}
 
