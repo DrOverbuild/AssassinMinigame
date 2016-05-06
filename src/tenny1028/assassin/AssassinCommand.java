@@ -13,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
+import sun.util.resources.cldr.zh.CalendarData_zh_Hans_CN;
 
 import java.util.*;
 
@@ -93,6 +94,11 @@ public class AssassinCommand implements CommandExecutor {
 
 		if(!controller.playerIsPlayingAssassin(p)){
 			p.sendMessage(ChatColor.RED + "You must be playing Assassin.");
+			return true;
+		}
+
+		if(controller.currentCoordinator == null){
+			p.sendMessage(ChatColor.RED + "Error: No Current Coordinator");
 			return true;
 		}
 

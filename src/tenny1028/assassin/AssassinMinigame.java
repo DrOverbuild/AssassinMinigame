@@ -93,6 +93,11 @@ public class AssassinMinigame extends JavaPlugin{
 			getServer().getScoreboardManager().getMainScoreboard().registerNewObjective("assassinScore","");
 		}
 
+		OfflinePlayer[] players = getTeam().getPlayers().toArray(new OfflinePlayer[]{});
+		for(OfflinePlayer p:players){
+			getTeam().removePlayer(p);
+		}
+
 		cmdExec = new AssassinCommand(this);
 		pEvents = new PlayerEvents(this);
 
