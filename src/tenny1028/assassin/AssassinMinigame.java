@@ -147,7 +147,7 @@ public class AssassinMinigame extends JavaPlugin{
 			}
 		}
 
-		if(getTeam().getSize() == 1){
+		if(getNumberOfPlayersPlayingAssassin() == 1){
 			setCurrentCoordinator(p);
 		}
 		return false;
@@ -170,7 +170,7 @@ public class AssassinMinigame extends JavaPlugin{
 			}
 		}
 
-		if(getTeam().getSize() == 1){
+		if(getNumberOfPlayersPlayingAssassin() == 1){
 			setCurrentCoordinator(null);
 			setCoordinator = false;
 		}
@@ -216,6 +216,16 @@ public class AssassinMinigame extends JavaPlugin{
 		}else{
 			p.teleport(p.getWorld().getSpawnLocation());
 		}
+	}
+
+	public int getNumberOfPlayersPlayingAssassin(){
+		int teamSize = 0;
+		for(OfflinePlayer player:getTeam().getPlayers()){
+			if(player.isOnline()){
+				teamSize++;
+			}
+		}
+		return teamSize;
 	}
 
 	public void broadcastToAllPlayersPlayingAssassin(String message){

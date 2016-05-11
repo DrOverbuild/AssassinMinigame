@@ -102,14 +102,10 @@ public class AssassinCommand implements CommandExecutor {
 			return true;
 		}
 
+
 		if(args.length == 1){
 			if(args[0].equalsIgnoreCase("start")){
-				if(controller.currentCoordinator.equals(p)||p.hasPermission("assassin.op")){
-					controller.getGameControl().startCountdown(p);
-				}else{
-					p.sendMessage(ChatColor.RED + "You must be the game coordinator to use this command.");
-				}
-				return true;
+				controller.getGameControl().startCountdown(p);
 			}
 		}
 
