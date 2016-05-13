@@ -106,6 +106,7 @@ public class AssassinCommand implements CommandExecutor {
 		if(args.length == 1){
 			if(args[0].equalsIgnoreCase("start")){
 				controller.getGameControl().startCountdown(p);
+				return true;
 			}
 		}
 

@@ -1,11 +1,10 @@
 <component name="ArtifactManager">
   <artifact build-on-make="true" name="AssassinMinigame:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/AssassinMinigame_jar</output-path>
+    <output-path>$PROJECT_DIR$/../../../../MC Server/test/plugins</output-path>
     <root id="root">
       <element id="archive" name="AssassinMinigame.jar">
         <element id="module-output" name="AssassinMinigame" />
       </element>
-      <element id="library" level="project" name="craftbukkit-1.8.8" />
     </root>
   </artifact>
 </component>

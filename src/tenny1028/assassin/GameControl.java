@@ -73,7 +73,7 @@ public class GameControl {
 		preGameCountdownStarted = true;
 
 		new BukkitRunnable(){
-			int secondsLeft = 30;
+			int secondsLeft = 10;
 			@Override
 			public void run() {
 				if(secondsLeft%5 == 0 || secondsLeft<5){
@@ -111,15 +111,14 @@ public class GameControl {
 		Player archer = players.remove(r.nextInt(players.size())).getPlayer();
 
 		for(OfflinePlayer p : players){
-			controller.getServer().dispatchCommand(controller.getServer().getConsoleSender(),"title " + p.getName() + " subtitle \"Stay alive!\"");
-			controller.getServer().dispatchCommand(controller.getServer().getConsoleSender(),"title " + p.getName() + " title \"You're a civilian\"");
+			if(p.isOnline()){
+				Player player = p.getPlayer();
+				TitleManager.sendTitle(player, ChatColor.AQUA + "You're a civilian", "Stay alive!");
+			}
 		}
 
-		controller.getServer().dispatchCommand(controller.getServer().getConsoleSender(),"title " + archer.getName() + " subtitle \"Find the assassin and protect the civilians!\"");
-		controller.getServer().dispatchCommand(controller.getServer().getConsoleSender(), "title " + archer.getName() + " title \"You're the archer\"");
-
-		controller.getServer().dispatchCommand(controller.getServer().getConsoleSender(), "title " + assassin.getName() + " subtitle \"Kill everyone!\"");
-		controller.getServer().dispatchCommand(controller.getServer().getConsoleSender(), "title " + assassin.getName() + " title \"You're the assassin\"");
+		TitleManager.sendTitle(archer, ChatColor.GREEN + "You're the archer","Find the assassin and protect the civilians!");
+		TitleManager.sendTitle(assassin, ChatColor.RED + "You're the assassin", "Kill everyone!");
 
 		ItemStack infinityBow = new ItemStack(Material.BOW);
 		infinityBow.addEnchantment(Enchantment.ARROW_INFINITE, 1);
