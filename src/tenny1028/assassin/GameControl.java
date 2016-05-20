@@ -60,10 +60,12 @@ public class GameControl {
 
 		ArrayList<OfflinePlayer> players = new ArrayList<>(controller.getTeam().getPlayers());
 
+		Location lobbySpawn = controller.getMainConfig().getLobbySpawn();
+
 		for(OfflinePlayer p:players){
 			if(p.isOnline()) {
-				if (controller.getSpawn() != null) {
-					p.getPlayer().teleport(controller.getSpawn());
+				if (lobbySpawn != null) {
+					p.getPlayer().teleport(lobbySpawn);
 				} else {
 					p.getPlayer().teleport(starter);
 				}

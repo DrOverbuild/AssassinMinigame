@@ -13,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Team;
+import tenny1028.assassin.config.MainConfig;
 import tenny1028.assassin.events.PlayerEvents;
 
 import java.util.HashSet;
@@ -27,7 +28,11 @@ public class AssassinMinigame extends JavaPlugin{
 	AssassinCommand cmdExec;
 	PlayerEvents pEvents;
 	GameControl gc;
+
+	@Deprecated
 	Location spawn;
+
+	MainConfig mainConfig;
 
 	@Override
 	public void onEnable() {
@@ -107,6 +112,7 @@ public class AssassinMinigame extends JavaPlugin{
 
 		saveConfig();
 		spawn = getLocationFromConfig(getConfig());
+		mainConfig = new MainConfig(this);
 	}
 
 	public boolean playerIsPlayingAssassin(Player p){
@@ -130,8 +136,10 @@ public class AssassinMinigame extends JavaPlugin{
 
 		getTeam().addPlayer(p);
 
-		if(getSpawn() != null) {
-			p.teleport(getSpawn());
+		Location lobbySpawn = getMainConfig().getLobbySpawn();
+
+		if(lobbySpawn != null) {
+			p.teleport(lobbySpawn);
 		}
 
 		if(getGameControl().isCurrentlyInProgress()){
@@ -270,16 +278,23 @@ public class AssassinMinigame extends JavaPlugin{
 		return false;
 	}
 
+	public MainConfig getMainConfig(){
+		return mainConfig;
+	}
+
+	@Deprecated
 	public Location getSpawn() {
 		return spawn;
 	}
 
+	@Deprecated
 	public void setSpawn(Location spawn) {
 		this.spawn = spawn;
 		saveLocationToConfig(getConfig(),spawn);
 		saveConfig();
 	}
 
+	@Deprecated
 	public static Location getLocationFromConfig(FileConfiguration config){
 		if(!config.contains("spawn")){
 			return null;
@@ -301,6 +316,7 @@ public class AssassinMinigame extends JavaPlugin{
 		return new Location(world,x,y,z,yaw,pitch);
 	}
 
+	@Deprecated
 	public static void saveLocationToConfig(FileConfiguration config, Location loc){
 		if(loc == null){
 			config.set("spawn",null);
