@@ -28,10 +28,6 @@ public class AssassinMinigame extends JavaPlugin{
 	AssassinCommand cmdExec;
 	PlayerEvents pEvents;
 	GameControl gc;
-
-	@Deprecated
-	Location spawn;
-
 	MainConfig mainConfig;
 
 	@Override
@@ -112,7 +108,6 @@ public class AssassinMinigame extends JavaPlugin{
 		gc = new GameControl(this);
 
 		saveConfig();
-		spawn = getLocationFromConfig(getConfig());
 		mainConfig = new MainConfig(this);
 	}
 
@@ -282,53 +277,4 @@ public class AssassinMinigame extends JavaPlugin{
 	public MainConfig getMainConfig(){
 		return mainConfig;
 	}
-
-	@Deprecated
-	public Location getSpawn() {
-		return spawn;
-	}
-
-	@Deprecated
-	public void setSpawn(Location spawn) {
-		this.spawn = spawn;
-		saveLocationToConfig(getConfig(),spawn);
-		saveConfig();
-	}
-
-	@Deprecated
-	public static Location getLocationFromConfig(FileConfiguration config){
-		if(!config.contains("spawn")){
-			return null;
-		}
-
-		String worldName = config.getString("spawn.world","world");
-		World world = Bukkit.getWorld(worldName);
-
-		if(world == null){
-			return null;
-		}
-
-		double x = config.getDouble("spawn.x",0);
-		double y = config.getDouble("spawn.y",0);
-		double z = config.getDouble("spawn.z",0);
-		float yaw = (float)config.getInt("spawn.yaw",0);
-		float pitch = (float)config.getInt("spawn.pitch");
-
-		return new Location(world,x,y,z,yaw,pitch);
-	}
-
-	@Deprecated
-	public static void saveLocationToConfig(FileConfiguration config, Location loc){
-		if(loc == null){
-			config.set("spawn",null);
-		}
-
-		config.set("spawn.world",loc.getWorld().getName());
-		config.set("spawn.x",loc.getX());
-		config.set("spawn.y",loc.getY());
-		config.set("spawn.z",loc.getZ());
-		config.set("spawn.yaw",loc.getYaw());
-		config.set("spawn.pitch",loc.getPitch());
-	}
-
 }
