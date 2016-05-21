@@ -107,6 +107,7 @@ public class AssassinMinigame extends JavaPlugin{
 		pEvents = new PlayerEvents(this);
 
 		getCommand("assassin").setExecutor(cmdExec);
+		getCommand("assassin").setTabCompleter(cmdExec);
 		getServer().getPluginManager().registerEvents(pEvents, this);
 		gc = new GameControl(this);
 

@@ -10,6 +10,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
@@ -18,9 +19,27 @@ import sun.util.resources.cldr.zh.CalendarData_zh_Hans_CN;
 import java.util.*;
 
 /**
- * Created by jasper on 9/15/15.
+ * Handles the execution of /assassin and the command's tab completer.
+ *
+ * Command structure:
+ *
+ * - assassin
+ *   - config
+ *     - spawn
+ *       - lobby
+ *       - {maps}
+ *     - map (or maps)
+ *       - create (or add)
+ *       - delete (or delete)
+ *   - help
+ *   - join
+ *   - leave
+ *   - leaderboards
+ *   - maps
+ *   - map
+ *     - {maps}
  */
-public class AssassinCommand implements CommandExecutor {
+public class AssassinCommand implements CommandExecutor, TabCompleter {
 
 	AssassinMinigame controller;
 
@@ -51,7 +70,8 @@ public class AssassinCommand implements CommandExecutor {
 			if(args[0].equalsIgnoreCase("config")){
 				return onCommandConfig(p,Arrays.copyOfRange(args,1,args.length));
 			}else if(args[0].equalsIgnoreCase("map")){
-				if(args.length > 1 && controller.currentCoordinator != null && controller.currentCoordinator.getName().equals(p.getName())){
+				if(args.length > 1 &&
+						(p.hasPermission("assassin.op") || (controller.currentCoordinator != null && controller.currentCoordinator.getName().equals(p.getName())))){
 					if(controller.getMainConfig().hasMap(args[1])){
 						controller.getGameControl().setCurrentMap(args[1]);
 					}else{
@@ -171,6 +191,11 @@ public class AssassinCommand implements CommandExecutor {
 	}
 
 	private boolean onCommandConfig(Player p, String[] args){
+		if(!p.hasPermission("assassin.op")){
+			p.sendMessage("You do not have permission.");
+			return true;
+		}
+
 		if (args.length < 1){
 			return false;
 		}
@@ -192,12 +217,12 @@ public class AssassinCommand implements CommandExecutor {
 			}else{
 				p.sendMessage(ChatColor.RED + "Map '" + args[1] + "' does not exist.");
 			}
-		}else if(args[0].equalsIgnoreCase("map")){
+		}else if(args[0].equalsIgnoreCase("map") || args[0].equalsIgnoreCase("maps")){
 			if(args.length < 3){
 				return false;
 			}
 
-			if(args[1].equalsIgnoreCase("create")){
+			if(args[1].equalsIgnoreCase("create") || args[1].equalsIgnoreCase("add")){
 				if(args[2].equalsIgnoreCase("lobby")){
 					p.sendMessage(ChatColor.RED + "You cannot create a map named 'lobby'.");
 					return true;
@@ -210,7 +235,7 @@ public class AssassinCommand implements CommandExecutor {
 
 				controller.getMainConfig().setMapSpawn(args[2],p.getLocation());
 				p.sendMessage(ChatColor.GRAY + "Map '" + args[2] + "' has been created and its spawn has been set.");
-			}else if(args[1].equalsIgnoreCase("delete")){
+			}else if(args[1].equalsIgnoreCase("delete") || args[1].equalsIgnoreCase("remove")){
 				if(controller.getMainConfig().hasMap(args[2])){
 					controller.getMainConfig().removeMap(args[2]);
 					p.sendMessage(ChatColor.GRAY + "Map '" + args[2] + "' has been deleted.");
@@ -221,5 +246,66 @@ public class AssassinCommand implements CommandExecutor {
 		}
 
 		return true;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String s, String[] args) {
+		List<String> completions = new ArrayList<>();
+
+		if(args.length <= 1){
+			if(sender.hasPermission("assassin.op")) {
+				completions.add("config");
+			}
+
+			completions.add("help");
+			completions.add("join");
+			completions.add("leaderboards");
+			completions.add("leave");
+			completions.add("map");
+			completions.add("maps");
+
+			if(args.length == 1){
+				return removeCompletions(completions,args[0]);
+			}
+
+			return completions;
+		}
+
+		if(args.length == 2 && args[0].equalsIgnoreCase("map")){
+			completions.addAll(controller.getMainConfig().getMaps());
+			removeCompletions(completions,args[1]);
+			return completions;
+		}
+
+		if(args.length == 2 && args[0].equalsIgnoreCase("config")){
+			completions.add("spawn");
+			completions.add("map");
+
+			return removeCompletions(completions,args[1]);
+		}
+
+		if(args.length == 3 && args[0].equalsIgnoreCase("config")){
+			if(args[1].equalsIgnoreCase("spawn")){
+				completions.add("lobby");
+				completions.addAll(controller.getMainConfig().getMaps());
+				return removeCompletions(completions,args[2]);
+			}else if(args[1].equalsIgnoreCase("map")||args[1].equalsIgnoreCase("maps")){
+				completions.add("create");
+				completions.add("delete");
+				return removeCompletions(completions,args[2]);
+			}
+		}
+
+		return null;
+	}
+
+	private static List<String> removeCompletions(List<String> completions, String startsWith){
+		List<String> newCompletions = new ArrayList<>(completions);
+		for (String completion : completions) {
+			if(!completion.startsWith(startsWith.toLowerCase())){
+				newCompletions.remove(completion);
+			}
+		}
+		return newCompletions;
 	}
 }
