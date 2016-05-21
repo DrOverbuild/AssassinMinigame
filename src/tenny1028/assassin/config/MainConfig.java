@@ -11,8 +11,7 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import tenny1028.assassin.AssassinMinigame;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Manages main config.
@@ -30,23 +29,37 @@ public class MainConfig {
 		return plugin.getConfig();
 	}
 
-	public List<Location> getMaps(){
-		List<Location> maps = new ArrayList<>();
-		for(String s:getConfig().getStringList("maps")){
-			maps.add((Location)getConfig().get("maps." + s + ".spawn"));
-		}
-		return maps;
+	public Set<String> getMaps(){
+		return getConfig().getConfigurationSection("maps").getKeys(false);
 	}
 
 	public Location getLobbySpawn(){
-		if(getConfig().get("lobby-spawn") == null){
-			return null;
+		Object spawn = getConfig().get("lobby-spawn");
+		if(spawn != null && spawn instanceof Location){
+			return (Location)spawn;
 		}
-		return (Location)getConfig().get("lobby-spawn");
+		return null;
+	}
+
+	public Location getMapSpawn(String mapName){
+		Object spawn = getConfig().get("maps." + mapName + ".spawn");
+		if(spawn != null && spawn instanceof Location){
+			return (Location)spawn;
+		}
+		return null;
 	}
 
 	public int getMinimumPlayers(){
 		return getConfig().getInt("minimum-players",3);
+	}
+
+	public boolean hasMap(String mapName){
+		return getConfig().contains("maps." + mapName);
+	}
+
+	public void removeMap(String mapName){
+		getConfig().set("maps."+mapName,null);
+		saveConfig();
 	}
 
 	public void saveConfig(){
@@ -55,6 +68,11 @@ public class MainConfig {
 
 	public void setLobbySpawn(Location lobbySpawn){
 		getConfig().set("lobby-spawn",lobbySpawn);
+		saveConfig();
+	}
+
+	public void setMapSpawn(String mapName, Location spawn){
+		getConfig().set("maps." + mapName + ".spawn",spawn);
 		saveConfig();
 	}
 

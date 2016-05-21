@@ -31,6 +31,7 @@ public class GameControl {
 	boolean currentlyInProgress;
 	boolean preGameCountdownStarted = false;
 	int secondsLeft = 0;
+	String currentMap = "";
 	BukkitRunnable gameTimer = null;
 
 	Player assassin = null;
@@ -58,9 +59,15 @@ public class GameControl {
 			return;
 		}
 
+		if(currentMap.equals("")){
+			Random r = new Random();
+			String[] maps = controller.getMainConfig().getMaps().toArray(new String[]{});
+			setCurrentMap(maps[r.nextInt(maps.length)]);
+		}
+
 		ArrayList<OfflinePlayer> players = new ArrayList<>(controller.getTeam().getPlayers());
 
-		Location lobbySpawn = controller.getMainConfig().getLobbySpawn();
+		Location lobbySpawn = controller.getMainConfig().getMapSpawn(currentMap);
 
 		for(OfflinePlayer p:players){
 			if(p.isOnline()) {
@@ -213,6 +220,7 @@ public class GameControl {
 			}
 
 			assassin = null;
+			currentMap = "";
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -266,5 +274,14 @@ public class GameControl {
 
 		spawnLocation.getWorld().dropItemNaturally(spawnLocation, (r.nextInt(10)>6)?bow:arrow);
 
+	}
+
+	public void setCurrentMap(String currentMap) {
+		this.currentMap = currentMap;
+		controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "Map '" + currentMap + "' has been chosen.");
+	}
+
+	public String getCurrentMap() {
+		return currentMap;
 	}
 }

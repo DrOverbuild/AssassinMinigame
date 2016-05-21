@@ -47,6 +47,28 @@ public class AssassinCommand implements CommandExecutor {
 			return false;
 		}
 
+		if (args.length > 0){
+			if(args[0].equalsIgnoreCase("config")){
+				return onCommandConfig(p,Arrays.copyOfRange(args,1,args.length));
+			}else if(args[0].equalsIgnoreCase("map")){
+				if(args.length > 1 && controller.currentCoordinator != null && controller.currentCoordinator.getName().equals(p.getName())){
+					if(controller.getMainConfig().hasMap(args[1])){
+						controller.getGameControl().setCurrentMap(args[1]);
+					}else{
+						p.sendMessage(ChatColor.RED + "Map '" + args[1] + "' does not exist.");
+					}
+				}else if(args.length > 2){
+					p.sendMessage(ChatColor.RED + "You must be the game coordinator to choose the map.");
+				}else{
+					if(controller.getGameControl().getCurrentMap().equals("")){
+						p.sendMessage(ChatColor.AQUA + "There is no current map.");
+					}
+					p.sendMessage(ChatColor.AQUA + "The current map is '" + controller.getGameControl().getCurrentMap() + "'.");
+				}
+				return true;
+			}
+		}
+
 		if(args.length == 1){
 			if(args[0].equalsIgnoreCase("help")){
 				sendHelp(p);
@@ -81,12 +103,17 @@ public class AssassinCommand implements CommandExecutor {
 
 				p.sendMessage("-------------------------------------------------");
 				return true;
-			}else if(args[0].contains("spawn")){
-				if(p.hasPermission("assassin.op")){
-					controller.getMainConfig().setLobbySpawn(p.getLocation());
-					p.sendMessage(ChatColor.GRAY + "Spawn set!");
+			}else if(args[0].equalsIgnoreCase("maps")){
+				String[] maps = controller.getMainConfig().getMaps().toArray(new String[]{});
+				if(maps.length > 0) {
+					StringBuilder message = new StringBuilder(ChatColor.AQUA + "");
+					for (int i = 0; i < maps.length - 1; i++) {
+						message.append(maps[i]).append(", ");
+					}
+					message.append(maps[maps.length - 1]);
+					p.sendMessage(message.toString());
 				}else{
-					p.sendMessage(ChatColor.RED + "You do not have permission.");
+					p.sendMessage(ChatColor.AQUA + "There are no configured maps.");
 				}
 				return true;
 			}
@@ -141,5 +168,58 @@ public class AssassinCommand implements CommandExecutor {
 							ChatColor.GOLD + "/assassin leaderboards" + ChatColor.RESET + ": Show the top 5 players in Assassin", "   this month",
 							ChatColor.GOLD + "/assassin start" + ChatColor.RESET + ": Start the game"};
 		p.sendMessage(message);
+	}
+
+	private boolean onCommandConfig(Player p, String[] args){
+		if (args.length < 1){
+			return false;
+		}
+
+		if(args[0].equalsIgnoreCase("spawn")){
+			if(args.length < 2){
+				return false;
+			}
+
+			if(args[1].equalsIgnoreCase("lobby")){
+				controller.getMainConfig().setLobbySpawn(p.getLocation());
+				p.sendMessage(ChatColor.GRAY + "Lobby Spawn set!");
+				return true;
+			}
+
+			if(controller.getMainConfig().hasMap(args[1])){
+				controller.getMainConfig().setMapSpawn(args[1],p.getLocation());
+				p.sendMessage(ChatColor.GRAY + "Spawn set for map " + args[1] + ".");
+			}else{
+				p.sendMessage(ChatColor.RED + "Map '" + args[1] + "' does not exist.");
+			}
+		}else if(args[0].equalsIgnoreCase("map")){
+			if(args.length < 3){
+				return false;
+			}
+
+			if(args[1].equalsIgnoreCase("create")){
+				if(args[2].equalsIgnoreCase("lobby")){
+					p.sendMessage(ChatColor.RED + "You cannot create a map named 'lobby'.");
+					return true;
+				}
+
+				if(controller.getMainConfig().hasMap(args[2])){
+					p.sendMessage(ChatColor.RED + "Map '" + args[2] + "' already exists.");
+					return true;
+				}
+
+				controller.getMainConfig().setMapSpawn(args[2],p.getLocation());
+				p.sendMessage(ChatColor.GRAY + "Map '" + args[2] + "' has been created and its spawn has been set.");
+			}else if(args[1].equalsIgnoreCase("delete")){
+				if(controller.getMainConfig().hasMap(args[2])){
+					controller.getMainConfig().removeMap(args[2]);
+					p.sendMessage(ChatColor.GRAY + "Map '" + args[2] + "' has been deleted.");
+				}else{
+					p.sendMessage(ChatColor.RED + "Map '" + args[2] + "' does not exist.");
+				}
+			}
+		}
+
+		return true;
 	}
 }
