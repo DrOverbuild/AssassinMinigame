@@ -7,6 +7,7 @@ package tenny1028.assassin;
 
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.craftbukkit.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,9 +15,11 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Team;
 import tenny1028.assassin.config.MainConfig;
+import tenny1028.assassin.config.MessagesConfig;
 import tenny1028.assassin.events.PlayerEvents;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -29,6 +32,7 @@ public class AssassinMinigame extends JavaPlugin{
 	PlayerEvents pEvents;
 	GameControl gc;
 	MainConfig mainConfig;
+	MessagesConfig messagesConfig;
 
 	@Override
 	public void onEnable() {
@@ -109,6 +113,7 @@ public class AssassinMinigame extends JavaPlugin{
 
 		saveConfig();
 		mainConfig = new MainConfig(this);
+		messagesConfig = new MessagesConfig(this);
 	}
 
 	public boolean playerIsPlayingAssassin(Player p){
@@ -276,5 +281,17 @@ public class AssassinMinigame extends JavaPlugin{
 
 	public MainConfig getMainConfig(){
 		return mainConfig;
+	}
+
+	public MessagesConfig getMessagesConfig() {
+		return messagesConfig;
+	}
+
+	public String formatMessage(String message, Map<String, String> variables){
+		return this.getMessagesConfig().formatMessage(message,variables);
+	}
+
+	public String formatMessage(String message){
+		return this.getMessagesConfig().formatMessage(message);
 	}
 }

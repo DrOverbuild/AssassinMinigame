@@ -28,6 +28,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import tenny1028.assassin.AssassinMinigame;
 import tenny1028.assassin.GameControl;
+import tenny1028.assassin.config.MessagesConfig;
 
 import java.util.Collections;
 
@@ -153,18 +154,24 @@ public class PlayerEvents implements Listener {
 		damaged.getInventory().clear();
 		if(damager != null) {
 			if (controller.getGameControl().getAssassin().equals(damager)) {
-				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "The Assassin has killed " + damaged.getName() + "!");
+//				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "The Assassin has killed " + damaged.getName() + "!");
+				controller.broadcastToAllPlayersPlayingAssassin(controller.formatMessage("death.assassin-killed-civilian",
+						MessagesConfig.toMap("%p",damaged.getName())));
 				controller.addToAssassinScore(damager, 2);
 				if (controller.getGameControl().alivePlayers().size() == 1) {
 					controller.getGameControl().endGame(1);
 				}
 			} else if (controller.getGameControl().getAssassin().equals(damaged)) {
-				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.RED + damaged.getName() + ChatColor.AQUA
-						+ " was slain by " + ChatColor.GREEN + damager.getName());
+//				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.RED + damaged.getName() + ChatColor.AQUA
+//						+ " was slain by " + ChatColor.GREEN + damager.getName());
+				controller.broadcastToAllPlayersPlayingAssassin(controller.formatMessage("death.civilian-killed-assassin",
+						MessagesConfig.toMap("%civilian",damager.getName(),"%assassin",damaged.getName())));
 				controller.addToAssassinScore(damager, 5);
 				controller.getGameControl().endGame(0);
 			} else {
-				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + damaged.getName() + " was shot by " + damager.getName() + "!");
+//				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + damaged.getName() + " was shot by " + damager.getName() + "!");
+				controller.broadcastToAllPlayersPlayingAssassin(controller.formatMessage("death.civilian-killed-civilian",
+						MessagesConfig.toMap("%killed",damaged.getName(),"%killer",damager.getName())));
 				controller.takeFromAssassinScore(damager, 10);
 				if (controller.alivePlayers().size() == 1) {
 					controller.getGameControl().endGame(1);
@@ -173,7 +180,9 @@ public class PlayerEvents implements Listener {
 				killPlayer(damager,null);
 			}
 		}else{
-			controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + damaged.getName() + " died!");
+//			controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + damaged.getName() + " died!");
+			controller.broadcastToAllPlayersPlayingAssassin(controller.formatMessage("death.civilian-died",
+					MessagesConfig.toMap("%p",damaged.getName())));
 			if (controller.alivePlayers().size() == 1) {
 				if (controller.getGameControl().getAssassin().equals(damaged)) {
 					controller.getGameControl().endGame(0);
@@ -255,7 +264,8 @@ public class PlayerEvents implements Listener {
 			if(controller.playerIsPlayingAssassin(e.getPlayer())) {
 				if (!e.getMessage().startsWith("/assassin")) {
 					e.setCancelled(true);
-					e.getPlayer().sendMessage(ChatColor.RED + "You cannot use that command while playing Assassin!");
+//					e.getPlayer().sendMessage(ChatColor.RED + "You cannot use that command while playing Assassin!");
+					e.getPlayer().sendMessage(controller.formatMessage("commands.cannot-use"));
 				}
 			}
 		}
