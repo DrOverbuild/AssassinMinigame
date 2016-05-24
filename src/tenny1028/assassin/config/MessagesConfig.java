@@ -44,11 +44,34 @@ public class MessagesConfig {
 			e.printStackTrace();
 		}
 
+		config.addDefault("game.already-playing","&cYou are already playing Assassin.");
+		config.addDefault("game.not-playing","&cYou are not playing Assassin");
+		config.addDefault("game.must-be-playing","&cYou must be playing Assassin.");
 		config.addDefault("death.assassin-killed-civilian","&bThe Assassin has killed %p!");
 		config.addDefault("death.civilian-killed-assassin","&c%assassin&b was slain by &a%civilian&b.");
 		config.addDefault("death.civilian-killed-civilian","&b%killed was shot by %killer.");
 		config.addDefault("death.civilian-died","&b%p died.");
 		config.addDefault("commands.cannot-use","&cYou cannot use that command while playing Assassin!");
+		config.addDefault("commands.no-permission","&cYou do not have permission.");
+		config.addDefault("commands.invalid-syntax","&cInvalid Syntax. Type \"assassin help\" for help.");
+		config.addDefault("commands.must-be-player","&cYou must be a player.");
+		config.addDefault("commands.not-coordinator","&cYou must be the game coordinator to choose the map.");
+		config.addDefault("commands.help.header","------------ &bAssassin Minigame Help&r ------------");
+		config.addDefault("commands.help.config","&b/%cmd&r: Configure AssassinMinigame");
+		config.addDefault("commands.help.join","&b/%cmd&r: Join Assassin");
+		config.addDefault("commands.help.leave","&b/%cmd&r: Leave Assassin");
+		config.addDefault("commands.help.leaderboards","&b/%cmd&r: Show the top 5 players in Assassin");
+		config.addDefault("commands.help.map","&b/%cmd&r: Choose the map");
+		config.addDefault("commands.help.maps","&b/%cmd&r: Show all available maps");
+		config.addDefault("commands.help.start","&b/%cmd&r: Start the game");
+		config.addDefault("map.does-not-exist","&cMap %map does not exist.");
+		config.addDefault("map.no-current-map","&bThere is no current map.");
+		config.addDefault("map.current-map","&bThe current map is &l%map%b.");
+		config.addDefault("map.no-maps","&bThere are no configured maps.");
+		config.addDefault("leaderboard.header","&b------------ &lTop 5 Scores For Assassin&r&b ------------");
+		config.addDefault("leaderboard.element","&b&l%player&r: %points points");
+		config.addDefault("leaderboard.divider","&b ................");
+		config.addDefault("leaderboard.footer","&b------------------------------------------------------");
 
 		config.options().copyDefaults(true);
 		saveConfig();

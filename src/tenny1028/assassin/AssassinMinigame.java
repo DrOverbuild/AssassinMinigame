@@ -294,4 +294,8 @@ public class AssassinMinigame extends JavaPlugin{
 	public String formatMessage(String message){
 		return this.getMessagesConfig().formatMessage(message);
 	}
+
+	public String formatMessage(String message, String... variables){
+		return this.getMessagesConfig().formatMessage(message,MessagesConfig.toMap(variables));
+	}
 }

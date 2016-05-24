@@ -51,11 +51,11 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(sender instanceof Player){
 			if(!executeCommand((Player)sender, args)){
-				sender.sendMessage(ChatColor.RED + "Invalid syntax. Type \"/assassin help\" for help.");
+				sender.sendMessage(controller.formatMessage("commands.invalid-syntax"));
 			}
 
 		}else{
-			sender.sendMessage(ChatColor.RED + "You must be a player!");
+			sender.sendMessage(controller.formatMessage("commands.must-be-player"));
 		}
 
 		return true;
@@ -75,15 +75,17 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 					if(controller.getMainConfig().hasMap(args[1])){
 						controller.getGameControl().setCurrentMap(args[1]);
 					}else{
-						p.sendMessage(ChatColor.RED + "Map '" + args[1] + "' does not exist.");
+//						p.sendMessage(ChatColor.RED + "Map '" + args[1] + "' does not exist.");
+						p.sendMessage(controller.formatMessage("map.does-not-exist","%map",args[1]));
 					}
 				}else if(args.length > 2){
-					p.sendMessage(ChatColor.RED + "You must be the game coordinator to choose the map.");
+					p.sendMessage(controller.formatMessage("commands.not-coordinator"));
 				}else{
 					if(controller.getGameControl().getCurrentMap().equals("")){
-						p.sendMessage(ChatColor.AQUA + "There is no current map.");
+						p.sendMessage(controller.formatMessage("map.no-current-map"));
 					}
-					p.sendMessage(ChatColor.AQUA + "The current map is '" + controller.getGameControl().getCurrentMap() + "'.");
+//					p.sendMessage(ChatColor.AQUA + "The current map is '" + controller.getGameControl().getCurrentMap() + "'.");
+					p.sendMessage(controller.formatMessage("map.current-map","%map",controller.getGameControl().getCurrentMap()));
 				}
 				return true;
 			}
@@ -96,12 +98,12 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 			}
 			if(args[0].equalsIgnoreCase("join")){
 				if(controller.addPlayerToGame(p)){
-					p.sendMessage(ChatColor.RED + "You are already playing Assassin.");
+					p.sendMessage(controller.formatMessage("game.already-playing"));
 				}
 				return true;
 			}else if(args[0].equalsIgnoreCase("leave")){
 				if(controller.removePlayerFromGame(p)){
-					p.sendMessage(ChatColor.RED + "You are not playing Assassin.");
+					p.sendMessage(controller.formatMessage("game.not-playing"));
 				}
 				return true;
 			}else if(args[0].equalsIgnoreCase("leaderboards")){
@@ -109,19 +111,23 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 				List<OfflinePlayer> top5 = getTopFivePlayersFromScoreboard();
 				Scoreboard sb = controller.getServer().getScoreboardManager().getMainScoreboard();
 				Objective ob = sb.getObjective("assassinScore");
-				p.sendMessage("------------ " + ChatColor.AQUA + "Top 5 Scores For Assassin" + ChatColor.RESET + " ------------");
+				p.sendMessage(controller.formatMessage("leaderboard.header"));
 				for(OfflinePlayer player:top5){
-					p.sendMessage(ChatColor.AQUA + "" + ChatColor.BOLD + player.getName() + ChatColor.RESET + ": " +
-							ob.getScore(player).getScore() + " points");
+//					p.sendMessage(ChatColor.AQUA + "" + ChatColor.BOLD + player.getName() + ChatColor.RESET + ": " +
+//							ob.getScore(player).getScore() + " points");
+					p.sendMessage(controller.formatMessage("leaderboard.element",
+							"%player",player.getName(),"%points",ob.getScore(player).getScore() + ""));
 				}
 
 				if(!top5.contains(p)){
-					p.sendMessage(" ................");
-					p.sendMessage(ChatColor.AQUA + "" + ChatColor.BOLD + p.getName() + ChatColor.RESET + ": " +
-							ob.getScore(p).getScore() + " points");
+					p.sendMessage(controller.formatMessage("leaderboard.divider"));
+//					p.sendMessage(ChatColor.AQUA + "" + ChatColor.BOLD + p.getName() + ChatColor.RESET + ": " +
+//							ob.getScore(p).getScore() + " points");
+					p.sendMessage(controller.formatMessage("leaderboard.element",
+							"%player",p.getName(),"%points",ob.getScore(p).getScore() + ""));
 				}
 
-				p.sendMessage("-------------------------------------------------");
+				p.sendMessage(controller.formatMessage("leaderboard.footer"));
 				return true;
 			}else if(args[0].equalsIgnoreCase("maps")){
 				String[] maps = controller.getMainConfig().getMaps().toArray(new String[]{});
@@ -133,22 +139,16 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 					message.append(maps[maps.length - 1]);
 					p.sendMessage(message.toString());
 				}else{
-					p.sendMessage(ChatColor.AQUA + "There are no configured maps.");
+					p.sendMessage(controller.formatMessage("map.no-maps"));
 				}
 				return true;
 			}
 		}
 
 		if(!controller.playerIsPlayingAssassin(p)){
-			p.sendMessage(ChatColor.RED + "You must be playing Assassin.");
+			p.sendMessage(controller.formatMessage("game.must-be-playing"));
 			return true;
 		}
-
-		if(controller.currentCoordinator == null){
-			p.sendMessage(ChatColor.RED + "Error: No Current Coordinator");
-			return true;
-		}
-
 
 		if(args.length == 1){
 			if(args[0].equalsIgnoreCase("start")){
@@ -182,17 +182,21 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 	}
 
 	public void sendHelp(Player p){
-		String[] message = {"------------ " + ChatColor.GOLD + "Assassin Minigame Help" + ChatColor.RESET + " ------------",
-		                    ChatColor.GOLD + "/assassin join" + ChatColor.RESET + ": Join the minigame",
-							ChatColor.GOLD + "/assassin leave" + ChatColor.RESET + ": Leave the minigame",
-							ChatColor.GOLD + "/assassin leaderboards" + ChatColor.RESET + ": Show the top 5 players in Assassin", "   this month",
-							ChatColor.GOLD + "/assassin start" + ChatColor.RESET + ": Start the game"};
-		p.sendMessage(message);
+		String[] message = {controller.formatMessage("commands.help.header"),
+							controller.formatMessage("commands.help.config","%cmd","assassin config"),
+		                    controller.formatMessage("commands.help.join","%cmd","assassin join"),
+							controller.formatMessage("commands.help.leave","%cmd","assassin leave"),
+							controller.formatMessage("commands.help.leaderboards","%cmd","assassin leave"),
+							controller.formatMessage("commands.help.map","%cmd","assassin map"),
+							controller.formatMessage("commands.help.maps","%cmd","assassin maps"),
+							controller.formatMessage("commands.help.start","%cmd","assassin start")};
+
+				p.sendMessage(message);
 	}
 
 	private boolean onCommandConfig(Player p, String[] args){
 		if(!p.hasPermission("assassin.op")){
-			p.sendMessage("You do not have permission.");
+			p.sendMessage(controller.formatMessage("commands.no-permission"));
 			return true;
 		}
 
