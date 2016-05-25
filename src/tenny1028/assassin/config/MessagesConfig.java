@@ -47,10 +47,16 @@ public class MessagesConfig {
 		config.addDefault("game.already-playing","&cYou are already playing Assassin.");
 		config.addDefault("game.not-playing","&cYou are not playing Assassin");
 		config.addDefault("game.must-be-playing","&cYou must be playing Assassin.");
+		config.addDefault("game.lore-message","&bFor use with the Assassin Minigame");
+		config.addDefault("game.not-enough-players","&cYou do not have enough players to start (%cp/%mp).");
+		config.addDefault("game.in-progress","&cA game is already in progress!");
 		config.addDefault("death.assassin-killed-civilian","&bThe Assassin has killed %p!");
 		config.addDefault("death.civilian-killed-assassin","&c%assassin&b was slain by &a%civilian&b.");
 		config.addDefault("death.civilian-killed-civilian","&b%killed was shot by %killer.");
 		config.addDefault("death.civilian-died","&b%p died.");
+		config.addDefault("winner.civilians","&bThe civilians won!");
+		config.addDefault("winner.assassin","&bThe assassin, &c%assassin&b, has won!");
+		config.addDefault("countdown.pregame","&aThe assassin will be chosen in &e%secondss");
 		config.addDefault("commands.cannot-use","&cYou cannot use that command while playing Assassin!");
 		config.addDefault("commands.no-permission","&cYou do not have permission.");
 		config.addDefault("commands.invalid-syntax","&cInvalid Syntax. Type \"assassin help\" for help.");
@@ -66,12 +72,19 @@ public class MessagesConfig {
 		config.addDefault("commands.help.start","&b/%cmd&r: Start the game");
 		config.addDefault("map.does-not-exist","&cMap %map does not exist.");
 		config.addDefault("map.no-current-map","&bThere is no current map.");
-		config.addDefault("map.current-map","&bThe current map is &l%map%b.");
+		config.addDefault("map.current-map","&bThe current map is &l%map%&b.");
 		config.addDefault("map.no-maps","&bThere are no configured maps.");
+		config.addDefault("map.chosen","&bMap &l%map&b has been chosen.");
 		config.addDefault("leaderboard.header","&b------------ &lTop 5 Scores For Assassin&r&b ------------");
 		config.addDefault("leaderboard.element","&b&l%player&r: %points points");
 		config.addDefault("leaderboard.divider","&b ................");
-		config.addDefault("leaderboard.footer","&b------------------------------------------------------");
+		config.addDefault("leaderboard.footer","&b----------------------------------------------------");
+		config.addDefault("title.civilian","&bYou're a civilian");
+		config.addDefault("title.archer","&aYou're the archer");
+		config.addDefault("title.assassin","&cYou're the assassin");
+		config.addDefault("subtitle.civilian","Stay alive!");
+		config.addDefault("subtitle.archer","Find the assassin and protect the civilians!");
+		config.addDefault("subtitle.assassin","Kill everyone!");
 
 		config.options().copyDefaults(true);
 		saveConfig();

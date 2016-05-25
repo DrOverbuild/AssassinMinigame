@@ -103,17 +103,19 @@ public class AssassinMinigame extends JavaPlugin{
 			getTeam().removePlayer(p);
 		}
 
+		saveConfig();
+		mainConfig = new MainConfig(this);
+		messagesConfig = new MessagesConfig(this);
+
 		cmdExec = new AssassinCommand(this);
 		pEvents = new PlayerEvents(this);
 
 		getCommand("assassin").setExecutor(cmdExec);
 		getCommand("assassin").setTabCompleter(cmdExec);
 		getServer().getPluginManager().registerEvents(pEvents, this);
+
 		gc = new GameControl(this);
 
-		saveConfig();
-		mainConfig = new MainConfig(this);
-		messagesConfig = new MessagesConfig(this);
 	}
 
 	public boolean playerIsPlayingAssassin(Player p){

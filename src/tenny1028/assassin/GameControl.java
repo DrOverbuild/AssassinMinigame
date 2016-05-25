@@ -22,7 +22,7 @@ import java.util.*;
  * Created by jasper on 9/15/15.
  */
 public class GameControl {
-	public static final String LORE_MESSAGE = "For use with the Assassin minigame.";
+	public static String LORE_MESSAGE = "For use with the Assassin minigame.";
 	public static final int ITEM_SPAWN_DISTANCE = 100;
 	public static final int ITEM_SPAWN_FREQUENCY = 15;
 	public static final int NUMBER_OF_ITEMS_TO_SPAWN = 4;
@@ -38,6 +38,7 @@ public class GameControl {
 
 	public GameControl(AssassinMinigame controller) {
 		this.controller = controller;
+		LORE_MESSAGE = controller.formatMessage("game.lore-message");
 	}
 
 	public boolean isCurrentlyInProgress() {
@@ -50,12 +51,12 @@ public class GameControl {
 
 	public void startCountdown(Player starter){
 		if(controller.getTeam().getSize()<3){
-			controller.currentCoordinator.sendMessage(ChatColor.RED + "You do not have enough players to start.");
+			starter.sendMessage(controller.formatMessage("game.not-enough-players","%cp",controller.getNumberOfPlayersPlayingAssassin() + "","%mp",3 + ""));
 			return;
 		}
 
 		if(isCurrentlyInProgress()||preGameCountdownStarted){
-			controller.currentCoordinator.sendMessage(ChatColor.RED + "A game is already in progress!");
+			starter.sendMessage(controller.formatMessage("game.in-progress"));
 			return;
 		}
 
@@ -86,7 +87,7 @@ public class GameControl {
 			@Override
 			public void run() {
 				if(secondsLeft%5 == 0 || secondsLeft<5){
-					controller.broadcastToAllPlayersPlayingAssassin(ChatColor.GREEN + "The assassin will be chosen in " + ChatColor.YELLOW + secondsLeft + "s");
+					controller.broadcastToAllPlayersPlayingAssassin(controller.formatMessage("countdown.pregame","%seconds",secondsLeft+""));
 				}
 				secondsLeft--;
 				if(secondsLeft < 0){
@@ -122,12 +123,12 @@ public class GameControl {
 		for(OfflinePlayer p : players){
 			if(p.isOnline()){
 				Player player = p.getPlayer();
-				TitleManager.sendTitle(player, ChatColor.AQUA + "You're a civilian", "Stay alive!");
+				TitleManager.sendTitle(player, controller.formatMessage("title.civilian"), controller.formatMessage("subtitle.civilian"));
 			}
 		}
 
-		TitleManager.sendTitle(archer, ChatColor.GREEN + "You're the archer","Find the assassin and protect the civilians!");
-		TitleManager.sendTitle(assassin, ChatColor.RED + "You're the assassin", "Kill everyone!");
+		TitleManager.sendTitle(archer, controller.formatMessage("title.archer"), controller.formatMessage("subtitle.archer"));
+		TitleManager.sendTitle(assassin, controller.formatMessage("title.assassin"),  controller.formatMessage("subtitle.assassin"));
 
 		ItemStack infinityBow = new ItemStack(Material.BOW);
 		infinityBow.addEnchantment(Enchantment.ARROW_INFINITE, 1);
@@ -192,7 +193,7 @@ public class GameControl {
 
 		try {
 			if (winner == 0) {
-				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "The civilians won!");
+				controller.broadcastToAllPlayersPlayingAssassin(controller.formatMessage("winner.civilians"));
 				for (OfflinePlayer p:controller.getTeam().getPlayers()){
 					if(p.isOnline()) {
 						if (assassin != p.getPlayer()) {
@@ -201,7 +202,8 @@ public class GameControl {
 					}
 				}
 			} else if (winner == 1) {
-				controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "The assassin, " + ChatColor.RED + assassin.getName() + ChatColor.AQUA + ", has won!");
+				String message = controller.formatMessage("winner.assassin","%assassin",assassin.getName());
+				controller.broadcastToAllPlayersPlayingAssassin(message);
 				controller.addToAssassinScore(assassin,5);
 			}
 
@@ -278,7 +280,7 @@ public class GameControl {
 
 	public void setCurrentMap(String currentMap) {
 		this.currentMap = currentMap;
-		controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + "Map '" + currentMap + "' has been chosen.");
+		controller.broadcastToAllPlayersPlayingAssassin(controller.formatMessage("map.chosen","%map",currentMap));
 	}
 
 	public String getCurrentMap() {
