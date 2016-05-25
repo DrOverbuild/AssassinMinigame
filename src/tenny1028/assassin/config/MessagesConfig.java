@@ -50,6 +50,9 @@ public class MessagesConfig {
 		config.addDefault("game.lore-message","&bFor use with the Assassin Minigame");
 		config.addDefault("game.not-enough-players","&cYou do not have enough players to start (%cp/%mp).");
 		config.addDefault("game.in-progress","&cA game is already in progress!");
+		config.addDefault("game.suffix","(Assassin)");
+		config.addDefault("game.join","&b%player is now playing Assassin (%cp/%mp).");
+		config.addDefault("game.leave","&b%player is no longer playing Assassin (%cp/%mp).");
 		config.addDefault("death.assassin-killed-civilian","&bThe Assassin has killed %p!");
 		config.addDefault("death.civilian-killed-assassin","&c%assassin&b was slain by &a%civilian&b.");
 		config.addDefault("death.civilian-killed-civilian","&b%killed was shot by %killer.");
@@ -62,6 +65,7 @@ public class MessagesConfig {
 		config.addDefault("commands.invalid-syntax","&cInvalid Syntax. Type \"assassin help\" for help.");
 		config.addDefault("commands.must-be-player","&cYou must be a player.");
 		config.addDefault("commands.not-coordinator","&cYou must be the game coordinator to choose the map.");
+		config.addDefault("commands.full-inventory","&cYou cannot join if you have items in your inventory.");
 		config.addDefault("commands.help.header","------------ &bAssassin Minigame Help&r ------------");
 		config.addDefault("commands.help.config","&b/%cmd&r: Configure AssassinMinigame");
 		config.addDefault("commands.help.join","&b/%cmd&r: Join Assassin");
@@ -85,6 +89,8 @@ public class MessagesConfig {
 		config.addDefault("subtitle.civilian","Stay alive!");
 		config.addDefault("subtitle.archer","Find the assassin and protect the civilians!");
 		config.addDefault("subtitle.assassin","Kill everyone!");
+		config.addDefault("coordinator.no-longer","&bYou are no longer the game coordinator.");
+		config.addDefault("coordinator.now-coordinator","&bYou are now the game coordinator.");
 
 		config.options().copyDefaults(true);
 		saveConfig();

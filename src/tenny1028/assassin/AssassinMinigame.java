@@ -51,14 +51,14 @@ public class AssassinMinigame extends JavaPlugin{
 	public void setCurrentCoordinator(Player currentCoordinator) {
 
 		if(this.currentCoordinator!=null){
-			this.currentCoordinator.sendMessage(ChatColor.AQUA + "You are no longer the game coordinator.");
+			this.currentCoordinator.sendMessage(formatMessage("coordinator.no-longer"));
 		}
 
 		this.currentCoordinator = currentCoordinator;
 
 		if(this.currentCoordinator != null){
 			getLogger().info("Setting " + this.currentCoordinator.getName() + " as game coordinator.");
-			currentCoordinator.sendMessage(ChatColor.AQUA + "You are now the game coordinator.");
+			currentCoordinator.sendMessage(formatMessage("coordinator.now-coordinator"));
 		}else {
 			getLogger().info("Setting null as game coordinator.");
 		}
@@ -92,7 +92,7 @@ public class AssassinMinigame extends JavaPlugin{
 		}
 
 		getTeam().setPrefix(ChatColor.AQUA + "");
-		getTeam().setSuffix(" (Assassin)");
+		getTeam().setSuffix(" " + formatMessage("game.suffix"));
 
 		if(getServer().getScoreboardManager().getMainScoreboard().getObjective("assassinScore")==null) {
 			getServer().getScoreboardManager().getMainScoreboard().registerNewObjective("assassinScore","");
@@ -133,7 +133,7 @@ public class AssassinMinigame extends JavaPlugin{
 		}
 
 		if(!Util.inventoryIsEmpty(p.getInventory())){
-			p.sendMessage(ChatColor.RED + "You cannot join if you have items in your inventory.");
+			p.sendMessage(formatMessage("commands.full-inventory"));
 			return false;
 		}
 
@@ -151,11 +151,8 @@ public class AssassinMinigame extends JavaPlugin{
 			p.setGameMode(GameMode.ADVENTURE);
 		}
 		p.setFoodLevel(20);
-		p.sendMessage(ChatColor.AQUA + "You are now playing Assassin.");
 		for(Player p2:getServer().getOnlinePlayers()){
-			if(!p2.equals(p)) {
-				p2.sendMessage(ChatColor.AQUA + p.getName() + " is now playing Assassin.");
-			}
+				p2.sendMessage(formatMessage("game.join","%player",p.getName(),"%cp",getNumberOfPlayersPlayingAssassin() + "","%mp","3"));
 		}
 
 		if(getNumberOfPlayersPlayingAssassin() == 1){
@@ -196,11 +193,8 @@ public class AssassinMinigame extends JavaPlugin{
 
 		clearMinigameRelatedItems(p);
 		p.setGameMode(GameMode.SURVIVAL);
-		p.sendMessage(ChatColor.AQUA + "You are no longer playing Assassin.");
 		for(Player p2:getServer().getOnlinePlayers()){
-			if(!p2.equals(p)) {
-				p2.sendMessage(ChatColor.AQUA + p.getName() + " is no longer playing Assassin.");
-			}
+			p2.sendMessage(formatMessage("game.leave","%player",p.getName(),"%cp",(getNumberOfPlayersPlayingAssassin() - 1) + "","%mp","3"));
 		}
 
 		if(setCoordinator){
