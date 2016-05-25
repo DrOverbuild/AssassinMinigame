@@ -221,6 +221,22 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 			}else{
 				p.sendMessage(ChatColor.RED + "Map '" + args[1] + "' does not exist.");
 			}
+		}else if(args[0].equalsIgnoreCase("minimum-players")){
+			if(args.length < 2){
+				return false;
+			}
+
+			try{
+				int minimumPlayers = Integer.parseInt(args[1]);
+				if(minimumPlayers < 3){
+					p.sendMessage(ChatColor.RED + "Minimum players cannot be less than 3.");
+					return true;
+				}
+				controller.getMainConfig().setMinimumPlayers(minimumPlayers);
+				p.sendMessage(ChatColor.GRAY + "Minimum players set to " + minimumPlayers + ".");
+			}catch (NumberFormatException e){
+				p.sendMessage(ChatColor.RED + "You must enter a number.");
+			}
 		}else if(args[0].equalsIgnoreCase("map") || args[0].equalsIgnoreCase("maps")){
 			if(args.length < 3){
 				return false;
@@ -284,6 +300,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 		if(args.length == 2 && args[0].equalsIgnoreCase("config")){
 			completions.add("spawn");
 			completions.add("map");
+			completions.add("minimum-players");
 
 			return removeCompletions(completions,args[1]);
 		}

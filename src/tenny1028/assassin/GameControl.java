@@ -50,8 +50,9 @@ public class GameControl {
 	}
 
 	public void startCountdown(Player starter){
-		if(controller.getTeam().getSize()<3){
-			starter.sendMessage(controller.formatMessage("game.not-enough-players","%cp",controller.getNumberOfPlayersPlayingAssassin() + "","%mp",3 + ""));
+		if(controller.getTeam().getSize()<controller.getMainConfig().getMinimumPlayers()){
+			starter.sendMessage(controller.formatMessage("game.not-enough-players",
+					"%cp",controller.getNumberOfPlayersPlayingAssassin() + "","%mp",controller.getMainConfig().getMinimumPlayers() + ""));
 			return;
 		}
 

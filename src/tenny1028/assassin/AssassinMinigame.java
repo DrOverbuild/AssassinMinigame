@@ -87,6 +87,10 @@ public class AssassinMinigame extends JavaPlugin{
 	}
 
 	public void setupAssassin(){
+		saveConfig();
+		mainConfig = new MainConfig(this);
+		messagesConfig = new MessagesConfig(this);
+
 		if(getServer().getScoreboardManager().getMainScoreboard().getTeam("Assassin") == null) {
 			getServer().getScoreboardManager().getMainScoreboard().registerNewTeam("Assassin");
 		}
@@ -102,10 +106,6 @@ public class AssassinMinigame extends JavaPlugin{
 		for(OfflinePlayer p:players){
 			getTeam().removePlayer(p);
 		}
-
-		saveConfig();
-		mainConfig = new MainConfig(this);
-		messagesConfig = new MessagesConfig(this);
 
 		cmdExec = new AssassinCommand(this);
 		pEvents = new PlayerEvents(this);
@@ -152,7 +152,8 @@ public class AssassinMinigame extends JavaPlugin{
 		}
 		p.setFoodLevel(20);
 		for(Player p2:getServer().getOnlinePlayers()){
-				p2.sendMessage(formatMessage("game.join","%player",p.getName(),"%cp",getNumberOfPlayersPlayingAssassin() + "","%mp","3"));
+				p2.sendMessage(formatMessage("game.join","%player",p.getName(),"%cp",getNumberOfPlayersPlayingAssassin() + "","%mp",
+						getMainConfig().getMinimumPlayers() + ""));
 		}
 
 		if(getNumberOfPlayersPlayingAssassin() == 1){
@@ -194,7 +195,8 @@ public class AssassinMinigame extends JavaPlugin{
 		clearMinigameRelatedItems(p);
 		p.setGameMode(GameMode.SURVIVAL);
 		for(Player p2:getServer().getOnlinePlayers()){
-			p2.sendMessage(formatMessage("game.leave","%player",p.getName(),"%cp",(getNumberOfPlayersPlayingAssassin() - 1) + "","%mp","3"));
+			p2.sendMessage(formatMessage("game.leave","%player",p.getName(),"%cp",(getNumberOfPlayersPlayingAssassin() - 1) + "","%mp",
+					getMainConfig().getMinimumPlayers() + ""));
 		}
 
 		if(setCoordinator){

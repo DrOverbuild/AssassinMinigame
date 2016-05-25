@@ -50,7 +50,8 @@ public class MainConfig {
 	}
 
 	public int getMinimumPlayers(){
-		return getConfig().getInt("minimum-players",3);
+		int minimumPlayers = getConfig().getInt("minimum-players",3);
+		return Math.max(3,minimumPlayers);
 	}
 
 	public boolean hasMap(String mapName){
@@ -73,6 +74,11 @@ public class MainConfig {
 
 	public void setMapSpawn(String mapName, Location spawn){
 		getConfig().set("maps." + mapName + ".spawn",spawn);
+		saveConfig();
+	}
+
+	public void setMinimumPlayers(int minimumPlayers){
+		getConfig().set("minimum-players",minimumPlayers);
 		saveConfig();
 	}
 
