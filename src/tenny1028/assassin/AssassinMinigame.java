@@ -277,6 +277,11 @@ public class AssassinMinigame extends JavaPlugin{
 		return false;
 	}
 
+	public void reloadConfigs(){
+		reloadConfig();
+		messagesConfig = new MessagesConfig(this);
+	}
+
 	public MainConfig getMainConfig(){
 		return mainConfig;
 	}

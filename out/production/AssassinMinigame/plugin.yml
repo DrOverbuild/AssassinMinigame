@@ -1,6 +1,6 @@
 name: AssassinMinigame
 main: tenny1028.assassin.AssassinMinigame
-version: 1.4
+version: 1.4.1
 
 commands:
   assassin:

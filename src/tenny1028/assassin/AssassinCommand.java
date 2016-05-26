@@ -83,6 +83,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 				}else{
 					if(controller.getGameControl().getCurrentMap().equals("")){
 						p.sendMessage(controller.formatMessage("map.no-current-map"));
+						return true;
 					}
 //					p.sendMessage(ChatColor.AQUA + "The current map is '" + controller.getGameControl().getCurrentMap() + "'.");
 					p.sendMessage(controller.formatMessage("map.current-map","%map",controller.getGameControl().getCurrentMap()));
@@ -221,7 +222,11 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 			}else{
 				p.sendMessage(ChatColor.RED + "Map '" + args[1] + "' does not exist.");
 			}
-		}else if(args[0].equalsIgnoreCase("minimum-players")){
+		}else if(args[0].equalsIgnoreCase("reload")){
+			controller.reloadConfigs();
+			p.sendMessage(ChatColor.GRAY + "Configuration files have been reloaded.");
+		}
+		else if(args[0].equalsIgnoreCase("minimum-players")){
 			if(args.length < 2){
 				return false;
 			}
@@ -301,6 +306,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 			completions.add("spawn");
 			completions.add("map");
 			completions.add("minimum-players");
+			completions.add("reload");
 
 			return removeCompletions(completions,args[1]);
 		}

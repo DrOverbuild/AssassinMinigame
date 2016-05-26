@@ -208,9 +208,14 @@ public class GameControl {
 				controller.addToAssassinScore(assassin,5);
 			}
 
+			Location lobbySpawn = controller.getMainConfig().getLobbySpawn();
+
 			for (OfflinePlayer p : controller.getTeam().getPlayers()) {
 				if(p.isOnline()) {
-					p.getPlayer().teleport(assassin);
+					if(lobbySpawn != null) {
+						p.getPlayer().teleport(lobbySpawn);
+					}
+
 					p.getPlayer().setGameMode(GameMode.ADVENTURE);
 					p.getPlayer().getInventory().clear();
 				}

@@ -76,7 +76,7 @@ public class MessagesConfig {
 		config.addDefault("commands.help.start","&b/%cmd&r: Start the game");
 		config.addDefault("map.does-not-exist","&cMap %map does not exist.");
 		config.addDefault("map.no-current-map","&bThere is no current map.");
-		config.addDefault("map.current-map","&bThe current map is &l%map%&b.");
+		config.addDefault("map.current-map","&bThe current map is &l%map&b.");
 		config.addDefault("map.no-maps","&bThere are no configured maps.");
 		config.addDefault("map.chosen","&bMap &l%map&b has been chosen.");
 		config.addDefault("leaderboard.header","&b------------ &lTop 5 Scores For Assassin&r&b ------------");
