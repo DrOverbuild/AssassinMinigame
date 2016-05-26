@@ -9,10 +9,7 @@
     <list default="true" id="c28b3a1e-d01f-45c4-9c41-4ee906bdb3d3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/plugin.yml" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/plugin.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/config/MessagesConfig.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/config/MessagesConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
     </list>
     <ignored path="AssassinMinigame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,7 +31,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameControl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameControl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="362">
@@ -96,7 +93,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
@@ -171,11 +168,11 @@
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/TitleManager.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/events/PlayerEvents.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java" />
-        <option value="$PROJECT_DIR$/src/plugin.yml" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/config/MessagesConfig.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" />
+        <option value="$PROJECT_DIR$/src/plugin.yml" />
       </list>
     </option>
   </component>
@@ -659,7 +656,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464214763773</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Small improvements:&#10;* Added /assassin config reload so the configurations can be reloaded without restarting the server&#10;* Teleport all players to lobby at end of game instead of to assassin&#10;* Small fix in default messages.yml">
+      <created>1464302540610</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1464302540610</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -724,7 +728,8 @@
     <MESSAGE value="Add localization for AssassinMinigame.java" />
     <MESSAGE value="Make the minimum players configurable" />
     <MESSAGE value="Update version string" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update version string" />
+    <MESSAGE value="Small improvements:&#10;* Added /assassin config reload so the configurations can be reloaded without restarting the server&#10;* Teleport all players to lobby at end of game instead of to assassin&#10;* Small fix in default messages.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small improvements:&#10;* Added /assassin config reload so the configurations can be reloaded without restarting the server&#10;* Teleport all players to lobby at end of game instead of to assassin&#10;* Small fix in default messages.yml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1317,14 +1322,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1414,6 +1411,14 @@
             <element signature="method#spawnRandomItems#0;class#GameControl#0" expanded="false" />
             <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
