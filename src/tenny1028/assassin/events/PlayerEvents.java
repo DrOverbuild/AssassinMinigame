@@ -179,16 +179,16 @@ public class PlayerEvents implements Listener {
 				}
 				killPlayer(damager,null);
 			}
-		}else{
+		}else if(controller.getGameControl().getAssassin().getName().equals(damaged.getName())){
+			controller.broadcastToAllPlayersPlayingAssassin(controller.formatMessage("death.assassin-died","%p",damaged.getName()));
+			controller.getGameControl().endGame(0);
+		}
+		else{
 //			controller.broadcastToAllPlayersPlayingAssassin(ChatColor.AQUA + damaged.getName() + " died!");
 			controller.broadcastToAllPlayersPlayingAssassin(controller.formatMessage("death.civilian-died",
 					MessagesConfig.toMap("%p",damaged.getName())));
-			if (controller.alivePlayers().size() == 1) {
-				if (controller.getGameControl().getAssassin().equals(damaged)) {
-					controller.getGameControl().endGame(0);
-				}else {
-					controller.getGameControl().endGame(1);
-				}
+			if(controller.getGameControl().alivePlayers().size() == 1){
+				controller.getGameControl().endGame(1);
 			}
 		}
 	}
