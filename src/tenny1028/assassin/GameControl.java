@@ -297,4 +297,8 @@ public class GameControl {
 	public String getCurrentMap() {
 		return currentMap;
 	}
+
+	public boolean isDeadlyLiquidEnabled() {
+		return deadlyLiquidEnabled;
+	}
 }

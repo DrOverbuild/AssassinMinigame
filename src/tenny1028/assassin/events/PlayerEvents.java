@@ -279,7 +279,7 @@ public class PlayerEvents implements Listener {
 	public void onPlayerMove(PlayerMoveEvent e){
 		if(controller.playerIsPlayingAssassin(e.getPlayer())) {
 			if(e.getPlayer().getGameMode().equals(GameMode.ADVENTURE)) {
-				if(controller.getGameControl().isCurrentlyInProgress()){
+				if(controller.getGameControl().isCurrentlyInProgress() && controller.getGameControl().isDeadlyLiquidEnabled()){
 				if (e.getTo().getBlock().getType().equals(Material.WATER) ||
 						e.getTo().getBlock().getType().equals(Material.STATIONARY_WATER) ||
 						e.getTo().getBlock().getType().equals(Material.STATIONARY_LAVA) ||
