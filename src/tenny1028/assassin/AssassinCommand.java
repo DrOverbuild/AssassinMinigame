@@ -198,16 +198,27 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 	}
 
 	public void sendHelp(Player p){
-		String[] message = {controller.formatMessage("commands.help.header"),
-							controller.formatMessage("commands.help.config","%cmd","assassin config"),
-		                    controller.formatMessage("commands.help.join","%cmd","assassin join"),
-							controller.formatMessage("commands.help.leave","%cmd","assassin leave"),
-							controller.formatMessage("commands.help.leaderboards","%cmd","assassin leave"),
-							controller.formatMessage("commands.help.map","%cmd","assassin map"),
-							controller.formatMessage("commands.help.maps","%cmd","assassin maps"),
-							controller.formatMessage("commands.help.start","%cmd","assassin start")};
+		List<String> messages = new ArrayList<>();
 
-				p.sendMessage(message);
+		messages.add(controller.formatMessage("commands.help.header"));
+
+		if(p.hasPermission("assassin.op")){
+			messages.add(controller.formatMessage("commands.help.config","%cmd","assassin config"));
+		}
+
+		messages.add(controller.formatMessage("commands.help.config","%cmd","assassin config"));
+		messages.add(controller.formatMessage("commands.help.join","%cmd","assassin join"));
+		messages.add(controller.formatMessage("commands.help.leave","%cmd","assassin leave"));
+		messages.add(controller.formatMessage("commands.help.leaderboards","%cmd","assassin leaderboards"));
+		messages.add(controller.formatMessage("commands.help.map","%cmd","assassin map"));
+		messages.add(controller.formatMessage("commands.help.maps","%cmd","assassin maps"));
+		messages.add(controller.formatMessage("commands.help.start","%cmd","assassin start"));
+
+		if(p.hasPermission("assassin.op")){
+			messages.add(controller.formatMessage("commands.help.tp","%cmd","assassin tp"));
+		}
+
+		p.sendMessage(messages.toArray(new String[]{}));
 	}
 
 	private boolean onCommandConfig(Player p, String[] args){

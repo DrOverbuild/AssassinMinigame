@@ -72,9 +72,10 @@ public class MessagesConfig {
 		config.addDefault("commands.help.join","&b/%cmd&r: Join Assassin");
 		config.addDefault("commands.help.leave","&b/%cmd&r: Leave Assassin");
 		config.addDefault("commands.help.leaderboards","&b/%cmd&r: Show the top 5 players in Assassin");
-		config.addDefault("commands.help.map","&b/%cmd&r: Choose the map");
+		config.addDefault("commands.help.map","&b/%cmd <map>&r: Set the map for the next game");
 		config.addDefault("commands.help.maps","&b/%cmd&r: Show all available maps");
 		config.addDefault("commands.help.start","&b/%cmd&r: Start the game");
+		config.addDefault("commands.help.tp","&b/%cmd <map>&r: Teleport to the map spawn");
 		config.addDefault("map.does-not-exist","&cMap %map does not exist.");
 		config.addDefault("map.no-current-map","&bThere is no current map.");
 		config.addDefault("map.current-map","&bThe current map is &l%map&b.");
