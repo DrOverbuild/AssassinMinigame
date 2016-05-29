@@ -42,18 +42,6 @@ public class MainConfig {
 		return null;
 	}
 
-	public Set<String> getMaps(){
-		return getConfig().getConfigurationSection("maps").getKeys(false);
-	}
-
-	public Location getMapSpawn(String mapName){
-		Object spawn = getConfig().get("maps." + mapName + ".spawn");
-		if(spawn != null && spawn instanceof Location){
-			return (Location)spawn;
-		}
-		return null;
-	}
-
 	public int getMinimumPlayers(){
 		int minimumPlayers = getConfig().getInt("minimum-players",3);
 		return Math.max(3,minimumPlayers);
@@ -63,31 +51,12 @@ public class MainConfig {
 		return getConfig().getInt("countdown.pregame",10);
 	}
 
-	public boolean hasMap(String mapName){
-		return getConfig().contains("maps." + mapName);
-	}
-
-	public void removeMap(String mapName){
-		getConfig().set("maps."+mapName,null);
-		saveConfig();
-	}
-
 	public void saveConfig(){
 		plugin.saveConfig();
 	}
 
 	public void setLobbySpawn(Location lobbySpawn){
 		getConfig().set("lobby-spawn",lobbySpawn);
-		saveConfig();
-	}
-
-	public void setMapSpawn(String mapName, Location spawn){
-		getConfig().set("maps." + mapName + ".spawn",spawn);
-		saveConfig();
-	}
-
-	public void setMinimumPlayers(int minimumPlayers){
-		getConfig().set("minimum-players",minimumPlayers);
 		saveConfig();
 	}
 

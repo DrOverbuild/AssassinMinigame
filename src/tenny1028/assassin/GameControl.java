@@ -63,13 +63,13 @@ public class GameControl {
 
 		if(currentMap.equals("")){
 			Random r = new Random();
-			String[] maps = controller.getMainConfig().getMaps().toArray(new String[]{});
+			String[] maps = controller.getMapsConfig().getMaps().toArray(new String[]{});
 			setCurrentMap(maps[r.nextInt(maps.length)]);
 		}
 
 		ArrayList<OfflinePlayer> players = new ArrayList<>(controller.getTeam().getPlayers());
 
-		Location lobbySpawn = controller.getMainConfig().getMapSpawn(currentMap);
+		Location lobbySpawn = controller.getMapsConfig().getMapSpawn(currentMap);
 
 		for(OfflinePlayer p:players){
 			if(p.isOnline()) {

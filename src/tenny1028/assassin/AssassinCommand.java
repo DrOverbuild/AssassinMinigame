@@ -76,7 +76,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 						p.sendMessage("map.during-game");
 						return true;
 					}
-					if(controller.getMainConfig().hasMap(args[1])){
+					if(controller.getMapsConfig().hasMap(args[1])){
 						controller.getGameControl().setCurrentMap(args[1]);
 					}else{
 //						p.sendMessage(ChatColor.RED + "Map '" + args[1] + "' does not exist.");
@@ -135,7 +135,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 				p.sendMessage(controller.formatMessage("leaderboard.footer"));
 				return true;
 			}else if(args[0].equalsIgnoreCase("maps")){
-				String[] maps = controller.getMainConfig().getMaps().toArray(new String[]{});
+				String[] maps = controller.getMapsConfig().getMaps().toArray(new String[]{});
 				if(maps.length > 0) {
 					StringBuilder message = new StringBuilder(ChatColor.AQUA + "");
 					for (int i = 0; i < maps.length - 1; i++) {
@@ -220,8 +220,8 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 				return true;
 			}
 
-			if(controller.getMainConfig().hasMap(args[1])){
-				controller.getMainConfig().setMapSpawn(args[1],p.getLocation());
+			if(controller.getMapsConfig().hasMap(args[1])){
+				controller.getMapsConfig().setMapSpawn(args[1],p.getLocation());
 				p.sendMessage(ChatColor.GRAY + "Spawn set for map " + args[1] + ".");
 			}else{
 				p.sendMessage(ChatColor.RED + "Map '" + args[1] + "' does not exist.");
@@ -240,16 +240,16 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 					return true;
 				}
 
-				if(controller.getMainConfig().hasMap(args[2])){
+				if(controller.getMapsConfig().hasMap(args[2])){
 					p.sendMessage(ChatColor.RED + "Map '" + args[2] + "' already exists.");
 					return true;
 				}
 
-				controller.getMainConfig().setMapSpawn(args[2],p.getLocation());
+				controller.getMapsConfig().setMapSpawn(args[2],p.getLocation());
 				p.sendMessage(ChatColor.GRAY + "Map '" + args[2] + "' has been created and its spawn has been set.");
 			}else if(args[1].equalsIgnoreCase("delete") || args[1].equalsIgnoreCase("remove")){
-				if(controller.getMainConfig().hasMap(args[2])){
-					controller.getMainConfig().removeMap(args[2]);
+				if(controller.getMapsConfig().hasMap(args[2])){
+					controller.getMapsConfig().removeMap(args[2]);
 					p.sendMessage(ChatColor.GRAY + "Map '" + args[2] + "' has been deleted.");
 				}else{
 					p.sendMessage(ChatColor.RED + "Map '" + args[2] + "' does not exist.");
@@ -284,7 +284,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 		}
 
 		if(args.length == 2 && args[0].equalsIgnoreCase("map")){
-			completions.addAll(controller.getMainConfig().getMaps());
+			completions.addAll(controller.getMapsConfig().getMaps());
 			removeCompletions(completions,args[1]);
 			return completions;
 		}
@@ -292,7 +292,6 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 		if(args.length == 2 && args[0].equalsIgnoreCase("config")){
 			completions.add("spawn");
 			completions.add("map");
-			completions.add("minimum-players");
 			completions.add("reload");
 
 			return removeCompletions(completions,args[1]);
@@ -301,7 +300,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 		if(args.length == 3 && args[0].equalsIgnoreCase("config")){
 			if(args[1].equalsIgnoreCase("spawn")){
 				completions.add("lobby");
-				completions.addAll(controller.getMainConfig().getMaps());
+				completions.addAll(controller.getMapsConfig().getMaps());
 				return removeCompletions(completions,args[2]);
 			}else if(args[1].equalsIgnoreCase("map")||args[1].equalsIgnoreCase("maps")){
 				completions.add("create");

@@ -15,6 +15,7 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Team;
 import tenny1028.assassin.config.MainConfig;
+import tenny1028.assassin.config.MapsConfig;
 import tenny1028.assassin.config.MessagesConfig;
 import tenny1028.assassin.events.PlayerEvents;
 
@@ -32,6 +33,7 @@ public class AssassinMinigame extends JavaPlugin{
 	PlayerEvents pEvents;
 	GameControl gc;
 	MainConfig mainConfig;
+	MapsConfig mapsConfig;
 	MessagesConfig messagesConfig;
 
 	@Override
@@ -90,6 +92,7 @@ public class AssassinMinigame extends JavaPlugin{
 		saveConfig();
 		mainConfig = new MainConfig(this);
 		messagesConfig = new MessagesConfig(this);
+		mapsConfig = new MapsConfig(this);
 
 		if(getServer().getScoreboardManager().getMainScoreboard().getTeam("Assassin") == null) {
 			getServer().getScoreboardManager().getMainScoreboard().registerNewTeam("Assassin");
@@ -284,6 +287,10 @@ public class AssassinMinigame extends JavaPlugin{
 
 	public MainConfig getMainConfig(){
 		return mainConfig;
+	}
+
+	public MapsConfig getMapsConfig() {
+		return mapsConfig;
 	}
 
 	public MessagesConfig getMessagesConfig() {
