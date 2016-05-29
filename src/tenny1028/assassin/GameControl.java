@@ -84,7 +84,7 @@ public class GameControl {
 		preGameCountdownStarted = true;
 
 		new BukkitRunnable(){
-			int secondsLeft = 10;
+			int secondsLeft = controller.getMainConfig().getPregameCountdown();
 			@Override
 			public void run() {
 				if(secondsLeft%5 == 0 || secondsLeft<5){
@@ -153,13 +153,12 @@ public class GameControl {
 		archer.getInventory().setItem(1, infinityBow);
 		archer.getInventory().setItem(8,arrow);
 
-		secondsLeft = 600;
+		secondsLeft = controller.getMainConfig().getGameCountdown();
 
 		gameTimer = new BukkitRunnable(){
 			@Override
 			public void run() {
-				if(secondsLeft == 600 || secondsLeft == 300 || secondsLeft == 180 || secondsLeft == 60
-						|| secondsLeft == 30 || secondsLeft == 20 || secondsLeft<10){
+				if(secondsLeft % 60 == 0 || secondsLeft == 30 || secondsLeft == 20 || secondsLeft<10){
 					if(secondsLeft >= 60) {
 						controller.broadcastToAllPlayersPlayingAssassin(ChatColor.GREEN + "The round will end in " + ChatColor.YELLOW + secondsLeft/60 + " minutes");
 					}else{

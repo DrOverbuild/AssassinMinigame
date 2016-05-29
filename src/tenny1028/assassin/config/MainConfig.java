@@ -22,6 +22,7 @@ public class MainConfig {
 	public MainConfig(AssassinMinigame plugin) {
 		this.plugin = plugin;
 
+		plugin.saveDefaultConfig();
 		updateConfig();
 	}
 
@@ -29,8 +30,8 @@ public class MainConfig {
 		return plugin.getConfig();
 	}
 
-	public Set<String> getMaps(){
-		return getConfig().getConfigurationSection("maps").getKeys(false);
+	public int getGameCountdown(){
+		return getConfig().getInt("countdown.game",600);
 	}
 
 	public Location getLobbySpawn(){
@@ -39,6 +40,10 @@ public class MainConfig {
 			return (Location)spawn;
 		}
 		return null;
+	}
+
+	public Set<String> getMaps(){
+		return getConfig().getConfigurationSection("maps").getKeys(false);
 	}
 
 	public Location getMapSpawn(String mapName){
@@ -52,6 +57,10 @@ public class MainConfig {
 	public int getMinimumPlayers(){
 		int minimumPlayers = getConfig().getInt("minimum-players",3);
 		return Math.max(3,minimumPlayers);
+	}
+
+	public int getPregameCountdown(){
+		return getConfig().getInt("countdown.pregame",10);
 	}
 
 	public boolean hasMap(String mapName){

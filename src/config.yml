@@ -1,0 +1,7 @@
+minimum-players: 3
+
+countdown:
+  # countdown.pregame is the number of seconds that the pregame countdown lasts.
+  pregame: 10
+  # countdown.game is the number of seconds that the game countdown lasts
+  game: 600
