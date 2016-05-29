@@ -80,6 +80,7 @@ public class MessagesConfig {
 		config.addDefault("map.current-map","&bThe current map is &l%map&b.");
 		config.addDefault("map.no-maps","&bThere are no configured maps.");
 		config.addDefault("map.chosen","&bMap &l%map&b has been chosen.");
+		config.addDefault("map.during-game","&cYou cannot change the map during the game.");
 		config.addDefault("leaderboard.header","&b------------ &lTop 5 Scores For Assassin&r&b ------------");
 		config.addDefault("leaderboard.element","&b&l%player&r: %points points");
 		config.addDefault("leaderboard.divider","&b ................");

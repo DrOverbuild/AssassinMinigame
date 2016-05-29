@@ -72,6 +72,10 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 			}else if(args[0].equalsIgnoreCase("map")){
 				if(args.length > 1 &&
 						(p.hasPermission("assassin.op") || (controller.currentCoordinator != null && controller.currentCoordinator.getName().equals(p.getName())))){
+					if(controller.getGameControl().preGameCountdownStarted || controller.getGameControl().isCurrentlyInProgress()){
+						p.sendMessage("map.during-game");
+						return true;
+					}
 					if(controller.getMainConfig().hasMap(args[1])){
 						controller.getGameControl().setCurrentMap(args[1]);
 					}else{
