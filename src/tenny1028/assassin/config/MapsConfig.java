@@ -41,6 +41,14 @@ public class MapsConfig {
 		return getConfig().contains("maps." + mapName);
 	}
 
+	public boolean mapHasDeadlyLiquid(String mapName){
+		if(!getConfig().contains("maps."+mapName+".deadly-liquid")){
+			getConfig().set("maps."+mapName+".deadly-liquid",false);
+			saveConfig();
+		}
+		return getConfig().getBoolean("maps."+mapName+".deadly-liquid",false);
+	}
+
 	public void removeMap(String mapName){
 		getConfig().set("maps."+mapName,null);
 		saveConfig();
@@ -50,8 +58,16 @@ public class MapsConfig {
 		plugin.saveConfig();
 	}
 
+	public void setMapDefaults(String mapName){
+		if(!getConfig().contains("maps."+mapName+".deadly-liquid")){
+			getConfig().set("maps."+mapName+".deadly-liquid",false);
+			saveConfig();
+		}
+	}
+
 	public void setMapSpawn(String mapName, Location spawn){
 		getConfig().set("maps." + mapName + ".spawn",spawn);
+		setMapDefaults(mapName);
 		saveConfig();
 	}
 }

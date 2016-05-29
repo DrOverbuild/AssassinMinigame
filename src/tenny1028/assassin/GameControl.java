@@ -32,6 +32,7 @@ public class GameControl {
 	boolean preGameCountdownStarted = false;
 	int secondsLeft = 0;
 	String currentMap = "";
+	boolean deadlyLiquidEnabled = false;
 	BukkitRunnable gameTimer = null;
 
 	Player assassin = null;
@@ -227,7 +228,7 @@ public class GameControl {
 			}
 
 			assassin = null;
-			currentMap = "";
+			clearCurrentMap();
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -285,7 +286,12 @@ public class GameControl {
 
 	public void setCurrentMap(String currentMap) {
 		this.currentMap = currentMap;
+		this.deadlyLiquidEnabled = controller.getMapsConfig().mapHasDeadlyLiquid(currentMap);
 		controller.broadcastToAllPlayersPlayingAssassin(controller.formatMessage("map.chosen","%map",currentMap));
+	}
+
+	public void clearCurrentMap(){
+		currentMap = "";
 	}
 
 	public String getCurrentMap() {

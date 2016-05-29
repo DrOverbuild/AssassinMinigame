@@ -7,17 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c28b3a1e-d01f-45c4-9c41-4ee906bdb3d3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/config/MapsConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/AssassinCommand.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/AssassinCommand.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/AssassinMinigame.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/AssassinMinigame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl$1.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl$2.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/config/MapsConfig.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/config/MapsConfig.java" />
     </list>
     <ignored path="AssassinMinigame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,21 +31,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameControl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameControl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
+            <state relative-caret-position="560">
+              <caret line="293" column="24" selection-start-line="293" selection-start-column="24" selection-end-line="293" selection-end-column="24" />
               <folding>
                 <element signature="docComment;class#GameControl#0" expanded="false" />
                 <element signature="method#GameControl#0;class#GameControl#0" expanded="false" />
-                <element signature="e#4541#4590#0" expanded="false" />
+                <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
+                <element signature="class#2355:2749" expanded="false" />
+                <element signature="method#run#0;class#2355:2749" expanded="false" />
+                <element signature="method#startGame#0;class#GameControl#0" expanded="false" />
+                <element signature="e#4579#4628#0" expanded="false" />
+                <element signature="class#4849:5552" expanded="false" />
+                <element signature="method#run#0;class#4849:5552" expanded="false" />
                 <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
-                <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-                <element signature="e#5907#5936#0" expanded="false" />
+                <element signature="e#5945#5974#0" expanded="false" />
                 <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
                 <element signature="method#spawnRandomItems#0;class#GameControl#0" expanded="false" />
-                <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
+                <element signature="e#9020#9021#0" expanded="true" />
+                <element signature="e#9042#9043#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -130,20 +128,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapsConfig.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MapsConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/config/MapsConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+            <state relative-caret-position="298">
+              <caret line="48" column="78" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="78" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#396#397#0" expanded="true" />
-                <element signature="e#423#424#0" expanded="true" />
-                <element signature="e#464#465#0" expanded="true" />
-                <element signature="e#496#497#0" expanded="true" />
-                <element signature="e#1034#1035#0" expanded="true" />
-                <element signature="e#1060#1061#0" expanded="true" />
-                <element signature="method#setMapSpawn#0;class#MapsConfig#0" expanded="false" />
+                <element signature="docComment;class#MapsConfig#0" expanded="false" />
+                <element signature="method#getMapSpawn#0;class#MapsConfig#0" expanded="false" />
+                <element signature="method#removeMap#0;class#MapsConfig#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -162,7 +155,7 @@
       <file leaf-file-name="AssassinMinigame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
+            <state relative-caret-position="365">
               <caret line="291" column="39" selection-start-line="291" selection-start-column="39" selection-end-line="291" selection-end-column="39" />
               <folding>
                 <element signature="docComment;class#AssassinMinigame#0" expanded="false" />
@@ -226,11 +219,11 @@
         <option value="$PROJECT_DIR$/src/plugin.yml" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/config/MessagesConfig.java" />
         <option value="$PROJECT_DIR$/src/config.yml" />
-        <option value="$PROJECT_DIR$/src/tenny1028/assassin/config/MapsConfig.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java" />
-        <option value="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java" />
+        <option value="$PROJECT_DIR$/src/tenny1028/assassin/config/MapsConfig.java" />
+        <option value="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" />
       </list>
     </option>
   </component>
@@ -763,7 +756,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464486068600</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Move map config methods to MapsConfig.java">
+      <created>1464487492198</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1464487492198</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -772,13 +772,13 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22576362" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22576362" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32802126" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32802126" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17795485" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -808,7 +808,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fully implemented &quot;/assassin leaderboards&quot; command" />
     <MESSAGE value="Scoreboard now updates" />
     <MESSAGE value="Update README.md" />
     <MESSAGE value="Add spawn location so players are forced to play in set map" />
@@ -833,7 +832,8 @@
     <MESSAGE value="Prevent players from changing map during game" />
     <MESSAGE value="Make countdown times configurable" />
     <MESSAGE value="Remove /assassin config minimum-players&#10;Because we will have so many configurable options, it will be hard to put them in as commands." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove /assassin config minimum-players&#10;Because we will have so many configurable options, it will be hard to put them in as commands." />
+    <MESSAGE value="Move map config methods to MapsConfig.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move map config methods to MapsConfig.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -876,13 +876,19 @@
           <folding>
             <element signature="docComment;class#GameControl#0" expanded="false" />
             <element signature="method#GameControl#0;class#GameControl#0" expanded="false" />
-            <element signature="e#4541#4590#0" expanded="false" />
+            <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
+            <element signature="class#2355:2749" expanded="false" />
+            <element signature="method#run#0;class#2355:2749" expanded="false" />
+            <element signature="method#startGame#0;class#GameControl#0" expanded="false" />
+            <element signature="e#4579#4628#0" expanded="false" />
+            <element signature="class#4849:5552" expanded="false" />
+            <element signature="method#run#0;class#4849:5552" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#5907#5936#0" expanded="false" />
+            <element signature="e#5945#5974#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#spawnRandomItems#0;class#GameControl#0" expanded="false" />
-            <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
+            <element signature="e#9020#9021#0" expanded="true" />
+            <element signature="e#9042#9043#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -959,13 +965,19 @@
           <folding>
             <element signature="docComment;class#GameControl#0" expanded="false" />
             <element signature="method#GameControl#0;class#GameControl#0" expanded="false" />
-            <element signature="e#4541#4590#0" expanded="false" />
+            <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
+            <element signature="class#2355:2749" expanded="false" />
+            <element signature="method#run#0;class#2355:2749" expanded="false" />
+            <element signature="method#startGame#0;class#GameControl#0" expanded="false" />
+            <element signature="e#4579#4628#0" expanded="false" />
+            <element signature="class#4849:5552" expanded="false" />
+            <element signature="method#run#0;class#4849:5552" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#5907#5936#0" expanded="false" />
+            <element signature="e#5945#5974#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#spawnRandomItems#0;class#GameControl#0" expanded="false" />
-            <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
+            <element signature="e#9020#9021#0" expanded="true" />
+            <element signature="e#9042#9043#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1042,13 +1054,19 @@
           <folding>
             <element signature="docComment;class#GameControl#0" expanded="false" />
             <element signature="method#GameControl#0;class#GameControl#0" expanded="false" />
-            <element signature="e#4541#4590#0" expanded="false" />
+            <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
+            <element signature="class#2355:2749" expanded="false" />
+            <element signature="method#run#0;class#2355:2749" expanded="false" />
+            <element signature="method#startGame#0;class#GameControl#0" expanded="false" />
+            <element signature="e#4579#4628#0" expanded="false" />
+            <element signature="class#4849:5552" expanded="false" />
+            <element signature="method#run#0;class#4849:5552" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#5907#5936#0" expanded="false" />
+            <element signature="e#5945#5974#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#spawnRandomItems#0;class#GameControl#0" expanded="false" />
-            <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
+            <element signature="e#9020#9021#0" expanded="true" />
+            <element signature="e#9042#9043#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1131,13 +1149,19 @@
           <folding>
             <element signature="docComment;class#GameControl#0" expanded="false" />
             <element signature="method#GameControl#0;class#GameControl#0" expanded="false" />
-            <element signature="e#4541#4590#0" expanded="false" />
+            <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
+            <element signature="class#2355:2749" expanded="false" />
+            <element signature="method#run#0;class#2355:2749" expanded="false" />
+            <element signature="method#startGame#0;class#GameControl#0" expanded="false" />
+            <element signature="e#4579#4628#0" expanded="false" />
+            <element signature="class#4849:5552" expanded="false" />
+            <element signature="method#run#0;class#4849:5552" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#5907#5936#0" expanded="false" />
+            <element signature="e#5945#5974#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#spawnRandomItems#0;class#GameControl#0" expanded="false" />
-            <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
+            <element signature="e#9020#9021#0" expanded="true" />
+            <element signature="e#9042#9043#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1213,13 +1237,19 @@
           <folding>
             <element signature="docComment;class#GameControl#0" expanded="false" />
             <element signature="method#GameControl#0;class#GameControl#0" expanded="false" />
-            <element signature="e#4541#4590#0" expanded="false" />
+            <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
+            <element signature="class#2355:2749" expanded="false" />
+            <element signature="method#run#0;class#2355:2749" expanded="false" />
+            <element signature="method#startGame#0;class#GameControl#0" expanded="false" />
+            <element signature="e#4579#4628#0" expanded="false" />
+            <element signature="class#4849:5552" expanded="false" />
+            <element signature="method#run#0;class#4849:5552" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#5907#5936#0" expanded="false" />
+            <element signature="e#5945#5974#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#spawnRandomItems#0;class#GameControl#0" expanded="false" />
-            <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
+            <element signature="e#9020#9021#0" expanded="true" />
+            <element signature="e#9042#9043#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1295,13 +1325,19 @@
           <folding>
             <element signature="docComment;class#GameControl#0" expanded="false" />
             <element signature="method#GameControl#0;class#GameControl#0" expanded="false" />
-            <element signature="e#4541#4590#0" expanded="false" />
+            <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
+            <element signature="class#2355:2749" expanded="false" />
+            <element signature="method#run#0;class#2355:2749" expanded="false" />
+            <element signature="method#startGame#0;class#GameControl#0" expanded="false" />
+            <element signature="e#4579#4628#0" expanded="false" />
+            <element signature="class#4849:5552" expanded="false" />
+            <element signature="method#run#0;class#4849:5552" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#5907#5936#0" expanded="false" />
+            <element signature="e#5945#5974#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#spawnRandomItems#0;class#GameControl#0" expanded="false" />
-            <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
+            <element signature="e#9020#9021#0" expanded="true" />
+            <element signature="e#9042#9043#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1415,50 +1451,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="291" column="39" selection-start-line="291" selection-start-column="39" selection-end-line="291" selection-end-column="39" />
-          <folding>
-            <element signature="docComment;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#onDisable#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#setCurrentCoordinator#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#getAssassinScore#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#addToAssassinScore#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#takeFromAssassinScore#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="docComment;method#addPlayerToGame#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#removePlayerFromGame#1;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#fullyRemovePlayerFromGame#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#getNumberOfPlayersPlayingAssassin#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#broadcastToAllPlayersPlayingAssassin#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#alivePlayers#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#clearMinigameRelatedItems#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#itemIsMinigameRelated#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="e#7457#7458#0" expanded="true" />
-            <element signature="method#formatMessage#0;class#AssassinMinigame#0" expanded="false" />
-            <element signature="method#formatMessage#2;class#AssassinMinigame#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
-          <folding>
-            <element signature="docComment;class#GameControl#0" expanded="false" />
-            <element signature="method#GameControl#0;class#GameControl#0" expanded="false" />
-            <element signature="e#4541#4590#0" expanded="false" />
-            <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#5907#5936#0" expanded="false" />
-            <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
-            <element signature="method#spawnRandomItems#0;class#GameControl#0" expanded="false" />
-            <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -1493,19 +1485,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="291" column="39" selection-start-line="291" selection-start-column="39" selection-end-line="291" selection-end-column="39" />
+          <folding>
+            <element signature="docComment;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#onDisable#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#setCurrentCoordinator#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#getAssassinScore#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#addToAssassinScore#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#takeFromAssassinScore#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="docComment;method#addPlayerToGame#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#removePlayerFromGame#1;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#fullyRemovePlayerFromGame#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#getNumberOfPlayersPlayingAssassin#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#broadcastToAllPlayersPlayingAssassin#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#alivePlayers#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#clearMinigameRelatedItems#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#itemIsMinigameRelated#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="e#7457#7458#0" expanded="true" />
+            <element signature="method#formatMessage#0;class#AssassinMinigame#0" expanded="false" />
+            <element signature="method#formatMessage#2;class#AssassinMinigame#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/config/MapsConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        <state relative-caret-position="298">
+          <caret line="48" column="78" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="78" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#396#397#0" expanded="true" />
-            <element signature="e#423#424#0" expanded="true" />
-            <element signature="e#464#465#0" expanded="true" />
-            <element signature="e#496#497#0" expanded="true" />
-            <element signature="e#1034#1035#0" expanded="true" />
-            <element signature="e#1060#1061#0" expanded="true" />
-            <element signature="method#setMapSpawn#0;class#MapsConfig#0" expanded="false" />
+            <element signature="docComment;class#MapsConfig#0" expanded="false" />
+            <element signature="method#getMapSpawn#0;class#MapsConfig#0" expanded="false" />
+            <element signature="method#removeMap#0;class#MapsConfig#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="293" column="24" selection-start-line="293" selection-start-column="24" selection-end-line="293" selection-end-column="24" />
+          <folding>
+            <element signature="docComment;class#GameControl#0" expanded="false" />
+            <element signature="method#GameControl#0;class#GameControl#0" expanded="false" />
+            <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
+            <element signature="class#2355:2749" expanded="false" />
+            <element signature="method#run#0;class#2355:2749" expanded="false" />
+            <element signature="method#startGame#0;class#GameControl#0" expanded="false" />
+            <element signature="e#4579#4628#0" expanded="false" />
+            <element signature="class#4849:5552" expanded="false" />
+            <element signature="method#run#0;class#4849:5552" expanded="false" />
+            <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
+            <element signature="e#5945#5974#0" expanded="false" />
+            <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
+            <element signature="method#spawnRandomItems#0;class#GameControl#0" expanded="false" />
+            <element signature="e#9020#9021#0" expanded="true" />
+            <element signature="e#9042#9043#0" expanded="true" />
           </folding>
         </state>
       </provider>
