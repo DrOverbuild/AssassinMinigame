@@ -7,10 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c28b3a1e-d01f-45c4-9c41-4ee906bdb3d3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/config.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java" />
     </list>
     <ignored path="AssassinMinigame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -111,15 +109,17 @@
       <file leaf-file-name="AssassinCommand.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="76" column="35" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
+            <state relative-caret-position="510">
+              <caret line="243" column="90" selection-start-line="243" selection-start-column="90" selection-end-line="243" selection-end-column="90" />
               <folding>
                 <element signature="docComment;class#AssassinCommand#0" expanded="false" />
                 <element signature="method#onCommand#0;class#AssassinCommand#0" expanded="false" />
+                <element signature="method#executeCommand#0;class#AssassinCommand#0" expanded="false" />
                 <element signature="e#3815#3918#0" expanded="false" />
                 <element signature="e#4226#4324#0" expanded="false" />
                 <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
                 <element signature="method#sendHelp#0;class#AssassinCommand#0" expanded="false" />
+                <element signature="method#onTabComplete#0;class#AssassinCommand#0" expanded="false" />
                 <element signature="method#removeCompletions#0;class#AssassinCommand#0" expanded="false" />
               </folding>
             </state>
@@ -203,10 +203,10 @@
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/events/PlayerEvents.java" />
         <option value="$PROJECT_DIR$/src/plugin.yml" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/config/MessagesConfig.java" />
-        <option value="$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java" />
         <option value="$PROJECT_DIR$/src/config.yml" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" />
+        <option value="$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java" />
       </list>
     </option>
   </component>
@@ -725,7 +725,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464485781292</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Make countdown times configurable">
+      <created>1464485827174</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1464485827175</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -793,7 +800,8 @@
     <MESSAGE value="End game when assassin dies from water damage" />
     <MESSAGE value="Update version string" />
     <MESSAGE value="Prevent players from changing map during game" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prevent players from changing map during game" />
+    <MESSAGE value="Make countdown times configurable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make countdown times configurable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -820,10 +828,12 @@
           <folding>
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
             <element signature="method#onCommand#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#executeCommand#0;class#AssassinCommand#0" expanded="false" />
             <element signature="e#3815#3918#0" expanded="false" />
             <element signature="e#4226#4324#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#sendHelp#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#onTabComplete#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#removeCompletions#0;class#AssassinCommand#0" expanded="false" />
           </folding>
         </state>
@@ -903,10 +913,12 @@
           <folding>
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
             <element signature="method#onCommand#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#executeCommand#0;class#AssassinCommand#0" expanded="false" />
             <element signature="e#3815#3918#0" expanded="false" />
             <element signature="e#4226#4324#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#sendHelp#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#onTabComplete#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#removeCompletions#0;class#AssassinCommand#0" expanded="false" />
           </folding>
         </state>
@@ -986,10 +998,12 @@
           <folding>
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
             <element signature="method#onCommand#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#executeCommand#0;class#AssassinCommand#0" expanded="false" />
             <element signature="e#3815#3918#0" expanded="false" />
             <element signature="e#4226#4324#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#sendHelp#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#onTabComplete#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#removeCompletions#0;class#AssassinCommand#0" expanded="false" />
           </folding>
         </state>
@@ -1075,10 +1089,12 @@
           <folding>
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
             <element signature="method#onCommand#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#executeCommand#0;class#AssassinCommand#0" expanded="false" />
             <element signature="e#3815#3918#0" expanded="false" />
             <element signature="e#4226#4324#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#sendHelp#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#onTabComplete#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#removeCompletions#0;class#AssassinCommand#0" expanded="false" />
           </folding>
         </state>
@@ -1164,10 +1180,12 @@
           <folding>
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
             <element signature="method#onCommand#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#executeCommand#0;class#AssassinCommand#0" expanded="false" />
             <element signature="e#3815#3918#0" expanded="false" />
             <element signature="e#4226#4324#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#sendHelp#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#onTabComplete#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#removeCompletions#0;class#AssassinCommand#0" expanded="false" />
           </folding>
         </state>
@@ -1246,10 +1264,12 @@
           <folding>
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
             <element signature="method#onCommand#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#executeCommand#0;class#AssassinCommand#0" expanded="false" />
             <element signature="e#3815#3918#0" expanded="false" />
             <element signature="e#4226#4324#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#sendHelp#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#onTabComplete#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#removeCompletions#0;class#AssassinCommand#0" expanded="false" />
           </folding>
         </state>
@@ -1449,15 +1469,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/AssassinCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="76" column="35" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
+        <state relative-caret-position="510">
+          <caret line="243" column="90" selection-start-line="243" selection-start-column="90" selection-end-line="243" selection-end-column="90" />
           <folding>
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
             <element signature="method#onCommand#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#executeCommand#0;class#AssassinCommand#0" expanded="false" />
             <element signature="e#3815#3918#0" expanded="false" />
             <element signature="e#4226#4324#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#sendHelp#0;class#AssassinCommand#0" expanded="false" />
+            <element signature="method#onTabComplete#0;class#AssassinCommand#0" expanded="false" />
             <element signature="method#removeCompletions#0;class#AssassinCommand#0" expanded="false" />
           </folding>
         </state>
