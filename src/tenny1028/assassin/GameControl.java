@@ -51,6 +51,7 @@ public class GameControl {
 	}
 
 	public void startCountdown(Player starter){
+
 		if(controller.getTeam().getSize()<controller.getMainConfig().getMinimumPlayers()){
 			starter.sendMessage(controller.formatMessage("game.not-enough-players",
 					"%cp",controller.getNumberOfPlayersPlayingAssassin() + "","%mp",controller.getMainConfig().getMinimumPlayers() + ""));
@@ -63,9 +64,15 @@ public class GameControl {
 		}
 
 		if(currentMap.equals("")){
-			Random r = new Random();
-			String[] maps = controller.getMapsConfig().getMaps().toArray(new String[]{});
-			setCurrentMap(maps[r.nextInt(maps.length)]);
+			if(controller.getMapsConfig().getMaps().size() < 1){
+				controller.getMapsConfig().setMapSpawn("Default",Bukkit.getWorlds().get(0).getHighestBlockAt(0,0).getLocation());
+				controller.getLogger().info("There are no configured maps, so a Default map at 0,0 has been created.");
+				setCurrentMap("Default");
+			}else {
+				Random r = new Random();
+				String[] maps = controller.getMapsConfig().getMaps().toArray(new String[]{});
+				setCurrentMap(maps[r.nextInt(maps.length)]);
+			}
 		}
 
 		ArrayList<OfflinePlayer> players = new ArrayList<>(controller.getTeam().getPlayers());

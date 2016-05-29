@@ -9,6 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import tenny1028.assassin.AssassinMinigame;
 
+import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -26,6 +27,9 @@ public class MapsConfig {
 	}
 
 	public Set<String> getMaps(){
+		if(getConfig().getConfigurationSection("maps") == null){
+			return Collections.emptySet();
+		}
 		return getConfig().getConfigurationSection("maps").getKeys(false);
 	}
 
