@@ -93,6 +93,17 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 					p.sendMessage(controller.formatMessage("map.current-map","%map",controller.getGameControl().getCurrentMap()));
 				}
 				return true;
+			}else if(args[0].equalsIgnoreCase("tp")){
+				if(args.length > 1 && p.hasPermission("assassin.op")){
+					if(args[1].equalsIgnoreCase("lobby")){
+						p.teleport(controller.getMainConfig().getLobbySpawn());
+					}else if(controller.getMapsConfig().hasMap(args[1])){
+						p.teleport(controller.getMapsConfig().getMapSpawn(args[1]));
+					}else{
+						p.sendMessage(ChatColor.RED + "That map does not exist.");
+					}
+				}
+				return true;
 			}
 		}
 
@@ -267,6 +278,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 		if(args.length <= 1){
 			if(sender.hasPermission("assassin.op")) {
 				completions.add("config");
+				completions.add("tp");
 			}
 
 			completions.add("help");
@@ -289,12 +301,21 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 			return completions;
 		}
 
-		if(args.length == 2 && args[0].equalsIgnoreCase("config")){
-			completions.add("spawn");
-			completions.add("map");
-			completions.add("reload");
-
+		if(args.length == 2 && args[0].equalsIgnoreCase("tp")){
+			completions.add("lobby");
+			completions.addAll(controller.getMapsConfig().getMaps());
 			return removeCompletions(completions,args[1]);
+		}
+
+		if(args.length == 2 && args[0].equalsIgnoreCase("config")){
+			if(sender.hasPermission("assassin.op")) {
+				completions.add("spawn");
+				completions.add("map");
+				completions.add("reload");
+
+
+				return removeCompletions(completions, args[1]);
+			}
 		}
 
 		if(args.length == 3 && args[0].equalsIgnoreCase("config")){
@@ -314,6 +335,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 
 	private static List<String> removeCompletions(List<String> completions, String startsWith){
 		List<String> newCompletions = new ArrayList<>(completions);
+		Collections.sort(newCompletions);
 		for (String completion : completions) {
 			if(!completion.startsWith(startsWith.toLowerCase())){
 				newCompletions.remove(completion);
