@@ -23,6 +23,11 @@ public class MainConfig {
 		this.plugin = plugin;
 
 		plugin.saveDefaultConfig();
+
+		getConfig().addDefault("countdown.game",600);
+		getConfig().addDefault("countdown.pregame",10);
+		getConfig().options().copyDefaults(true);
+
 		updateConfig();
 	}
 
