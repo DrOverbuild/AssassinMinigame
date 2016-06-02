@@ -250,8 +250,10 @@ public class AssassinMinigame extends JavaPlugin{
 		Set<Player> alivePlayers = new HashSet<>();
 
 		for(OfflinePlayer p : getTeam().getPlayers()){
-			if(p.getPlayer().getGameMode().equals(GameMode.ADVENTURE)){
-				alivePlayers.add(p.getPlayer());
+			if(p.isOnline()) {
+				if (p.getPlayer().getGameMode().equals(GameMode.ADVENTURE)) {
+					alivePlayers.add(p.getPlayer());
+				}
 			}
 		}
 
