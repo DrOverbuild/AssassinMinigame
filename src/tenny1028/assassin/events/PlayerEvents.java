@@ -22,18 +22,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.*;
-import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import tenny1028.assassin.AssassinMinigame;
 import tenny1028.assassin.GameControl;
 import tenny1028.assassin.config.MapProtection;
 import tenny1028.assassin.config.MessagesConfig;
+import tenny1028.assassin.runnables.CooldownRunnable;
 
 import java.util.Collections;
 
@@ -73,7 +71,7 @@ public class PlayerEvents implements Listener {
 		if(entityIsPlayer(e.getDamager())){
 			damager = (Player)e.getDamager();
 
-			if(controller.playerIsPlayingAssassin(damager)){
+			if(controller.playerIsPlayingAssassin(damager) && !controller.getGameControl().getCooldownPlayers().contains(damager.getName())){
 				e.setCancelled(true);
 			}else{
 				damager = null;
@@ -100,6 +98,11 @@ public class PlayerEvents implements Listener {
 
 		if(!damager.getItemInHand().getType().equals(Material.IRON_SWORD)) return;
 
+		final int cooldownTime = controller.getMainConfig().getSwordCooldown() * 20;
+		if(cooldownTime > 0){
+			new CooldownRunnable(cooldownTime,damager,controller).runTaskTimer(controller,1,1);
+		}
+
 		killPlayer(damaged,damager);
 	}
 
@@ -125,7 +128,7 @@ public class PlayerEvents implements Listener {
 		if(arrow.getShooter() instanceof Player){
 			damager = (Player)arrow.getShooter();
 
-			if(controller.playerIsPlayingAssassin(damager)){
+			if(controller.playerIsPlayingAssassin(damager) && !controller.getGameControl().getCooldownPlayers().contains(damager.getName())){
 				e.setCancelled(true);
 			}else{
 				damager = null;
@@ -136,6 +139,30 @@ public class PlayerEvents implements Listener {
 
 		if(controller.getGameControl().isCurrentlyInProgress()&&!damaged.equals(damager)) {
 			killPlayer(damaged, damager);
+		}
+	}
+
+	@EventHandler
+	public void onArrowShoot(ProjectileLaunchEvent e){
+		if(e.getEntityType().equals(EntityType.ARROW)){
+			controller.getLogger().info("Type is arrow!");
+			if(e.getEntity().getShooter() instanceof Player){
+				controller.getLogger().info("Shooter is player!");
+				Player shooter = (Player)e.getEntity().getShooter();
+				if(controller.playerIsPlayingAssassin(shooter)){
+					controller.getLogger().info("Shooter is playing Assassin!");
+					if(controller.getGameControl().getCooldownPlayers().contains(shooter.getName())) {
+						controller.getLogger().info("Shooter is on cooldown.");
+						e.setCancelled(true);
+					}else{
+						controller.getLogger().info("Beginning cooldown for shooter!");
+						final int cooldownTime = controller.getMainConfig().getBowCooldown();
+						if (cooldownTime > 0) {
+							new CooldownRunnable(cooldownTime, shooter, controller).runTaskTimer(controller, 1, 1);
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -296,11 +323,13 @@ public class PlayerEvents implements Listener {
 		}
 
 		if(controller.getGameControl().isCurrentlyInProgress() && controller.playerIsPlayingAssassin(e.getPlayer())) {
-			MapProtection protection = new MapProtection(controller.getMapsConfig(), controller.getGameControl().getCurrentMap());
-			if (protection.restrictPlayers()) {
-				if (!protection.locationIsInProtectedArea(e.getTo())) {
-					e.getPlayer().sendMessage(controller.formatMessage("map.protected"));
-					e.setCancelled(false);
+			if(controller.getMapsConfig().mapIsProtected(controller.getGameControl().getCurrentMap())) {
+				MapProtection protection = new MapProtection(controller.getMapsConfig(), controller.getGameControl().getCurrentMap());
+				if (protection.restrictPlayers()) {
+					if (!protection.locationIsInProtectedArea(e.getTo())) {
+						e.getPlayer().sendMessage(controller.formatMessage("protection.protected"));
+						e.setCancelled(false);
+					}
 				}
 			}
 		}
@@ -337,12 +366,14 @@ public class PlayerEvents implements Listener {
 							new MapProtection(controller.getMapsConfig(),map).setLocation1(e.getClickedBlock().getLocation());
 							e.getPlayer().sendMessage(ChatColor.GRAY + "Location 1 set!");
 							e.setCancelled(true);
+							return;
 						}
 
 						if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
 							new MapProtection(controller.getMapsConfig(),map).setLocation2(e.getClickedBlock().getLocation());
 							e.getPlayer().sendMessage(ChatColor.GRAY + "Location 2 set!");
 							e.setCancelled(true);
+							return;
 						}
 					}
 				}
@@ -354,8 +385,24 @@ public class PlayerEvents implements Listener {
 				for (MapProtection protection : controller.getMapsConfig().getMapsProtections()) {
 					if (!protection.allowInteraction()) {
 						if (protection.locationIsInProtectedArea(e.getClickedBlock().getLocation())) {
-							e.getPlayer().sendMessage(controller.formatMessage("map.protected"));
+							e.getPlayer().sendMessage(controller.formatMessage("protection.protected"));
 							e.setCancelled(false);
+							return;
+						}
+					}
+				}
+			}
+		}
+
+		if(e.getAction().equals(Action.LEFT_CLICK_AIR)||e.getAction().equals(Action.LEFT_CLICK_BLOCK)){
+			if(controller.playerIsPlayingAssassin(e.getPlayer())){
+				if(e.getItem() != null && e.getItem().getType().equals(Material.IRON_SWORD)){
+					if(controller.getGameControl().getCooldownPlayers().contains(e.getPlayer().getName())){
+						e.setCancelled(true);
+					}else{
+						final int cooldownTime = controller.getMainConfig().getSwordCooldown() * 20;
+						if(cooldownTime > 0){
+							new CooldownRunnable(cooldownTime,e.getPlayer(),controller).runTaskTimer(controller,1,1);
 						}
 					}
 				}
@@ -380,7 +427,7 @@ public class PlayerEvents implements Listener {
 			for (MapProtection protection : controller.getMapsConfig().getMapsProtections()) {
 				if (!protection.allowWorldModification()) {
 					if (protection.locationIsInProtectedArea(e.getBlock().getLocation())) {
-						e.getPlayer().sendMessage(controller.formatMessage("map.protected"));
+						e.getPlayer().sendMessage(controller.formatMessage("protection.protected"));
 						e.setCancelled(true);
 					}
 				}
@@ -394,7 +441,7 @@ public class PlayerEvents implements Listener {
 			for (MapProtection protection : controller.getMapsConfig().getMapsProtections()) {
 				if (!protection.allowWorldModification()) {
 					if (protection.locationIsInProtectedArea(e.getBlock().getLocation())) {
-						e.getPlayer().sendMessage(controller.formatMessage("map.protected"));
+						e.getPlayer().sendMessage(controller.formatMessage("protection.protected"));
 						e.setCancelled(true);
 					}
 				}

@@ -14,6 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.util.Vector;
+import tenny1028.assassin.runnables.ArrowRefreshRunnable;
 
 import java.util.*;
 
@@ -35,11 +36,13 @@ public class GameControl {
 	boolean deadlyLiquidEnabled = false;
 	BukkitRunnable gameTimer = null;
 
+	List<String> cooldownPlayers = new ArrayList<>();
+
 	Player assassin = null;
 
 	public GameControl(AssassinMinigame controller) {
 		this.controller = controller;
-		LORE_MESSAGE = controller.formatMessage("game.lore-message");
+		LORE_MESSAGE = controller.formatMessage("items.lore-message");
 	}
 
 	public boolean isCurrentlyInProgress() {
@@ -48,6 +51,10 @@ public class GameControl {
 
 	public Player getAssassin() {
 		return assassin;
+	}
+
+	public List<String> getCooldownPlayers(){
+		return cooldownPlayers;
 	}
 
 	public void startCountdown(Player starter){
@@ -139,11 +146,12 @@ public class GameControl {
 		TitleManager.sendTitle(archer, controller.formatMessage("title.archer"), controller.formatMessage("subtitle.archer"));
 		TitleManager.sendTitle(assassin, controller.formatMessage("title.assassin"),  controller.formatMessage("subtitle.assassin"));
 
-		ItemStack infinityBow = new ItemStack(Material.BOW);
-		infinityBow.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		ItemMeta infinityBowMeta = infinityBow.getItemMeta();
-		infinityBowMeta.setLore(Collections.singletonList(LORE_MESSAGE));
-		infinityBow.setItemMeta(infinityBowMeta);
+		ItemStack archersBow = new ItemStack(Material.BOW);
+		archersBow.addEnchantment(Enchantment.DURABILITY, 3);
+		ItemMeta archersBowMeta = archersBow.getItemMeta();
+		archersBowMeta.setDisplayName(controller.formatMessage("items.archers-bow"));
+		archersBowMeta.setLore(Collections.singletonList(LORE_MESSAGE));
+		archersBow.setItemMeta(archersBowMeta);
 
 		ItemStack arrow = new ItemStack(Material.ARROW);
 		ItemMeta arrowMeta = arrow.getItemMeta();
@@ -158,8 +166,11 @@ public class GameControl {
 		assassin.getInventory().setItem(1,sword);
 		//assassin.getInventory().setItem(2,infinityBow);
 		//assassin.getInventory().setItem(8,arrow);
-		archer.getInventory().setItem(1, infinityBow);
+		archer.getInventory().setItem(1, archersBow);
 		archer.getInventory().setItem(8,arrow);
+
+		final int refreshRate = controller.getMainConfig().getArrowRefresh() * 20;
+		new ArrowRefreshRunnable(controller.getMainConfig().getMaxArrows(),controller).runTaskTimer(controller,refreshRate,refreshRate);
 
 		secondsLeft = controller.getMainConfig().getGameCountdown();
 

@@ -47,7 +47,6 @@ public class MessagesConfig {
 		config.addDefault("game.already-playing","&cYou are already playing Assassin.");
 		config.addDefault("game.not-playing","&cYou are not playing Assassin");
 		config.addDefault("game.must-be-playing","&cYou must be playing Assassin.");
-		config.addDefault("game.lore-message","&bFor use with the Assassin Minigame");
 		config.addDefault("game.not-enough-players","&cYou do not have enough players to start (%cp/%mp).");
 		config.addDefault("game.in-progress","&cA game is already in progress!");
 		config.addDefault("game.suffix","(Assassin)");
@@ -96,6 +95,8 @@ public class MessagesConfig {
 		config.addDefault("subtitle.assassin","Kill everyone!");
 		config.addDefault("coordinator.no-longer","&bYou are no longer the game coordinator.");
 		config.addDefault("coordinator.now-coordinator","&bYou are now the game coordinator.");
+		config.addDefault("items.archers-bow","&bArcher's Bow");
+		config.addDefault("items.lore-message","&bFor use with the Assassin minigame.");
 
 		config.options().copyDefaults(true);
 		saveConfig();

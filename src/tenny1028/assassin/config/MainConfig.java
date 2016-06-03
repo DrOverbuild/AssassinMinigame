@@ -26,9 +26,21 @@ public class MainConfig {
 
 		getConfig().addDefault("countdown.game",600);
 		getConfig().addDefault("countdown.pregame",10);
+		getConfig().addDefault("cooldown.sword",2);
+		getConfig().addDefault("cooldown.bow",1);
+		getConfig().addDefault("cooldown.arrow-refresh",1);
+		getConfig().addDefault("cooldown.max-arrows",3);
 		getConfig().options().copyDefaults(true);
 
 		updateConfig();
+	}
+
+	public int getArrowRefresh(){
+		return getConfig().getInt("cooldown.arrow-refresh",1);
+	}
+
+	public int getBowCooldown(){
+		return getConfig().getInt("cooldown.bow",1);
 	}
 
 	private FileConfiguration getConfig(){
@@ -47,6 +59,10 @@ public class MainConfig {
 		return null;
 	}
 
+	public int getMaxArrows(){
+		return getConfig().getInt("cooldown.max-arrows",3);
+	}
+
 	public int getMinimumPlayers(){
 		int minimumPlayers = getConfig().getInt("minimum-players",3);
 		return Math.max(3,minimumPlayers);
@@ -54,6 +70,10 @@ public class MainConfig {
 
 	public int getPregameCountdown(){
 		return getConfig().getInt("countdown.pregame",10);
+	}
+
+	public int getSwordCooldown(){
+		return getConfig().getInt("cooldown.sword",3);
 	}
 
 	public void saveConfig(){

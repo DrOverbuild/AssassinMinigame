@@ -5,6 +5,7 @@
 
 package tenny1028.assassin;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -18,5 +19,13 @@ public class Util {
 			if(it != null) return false;
 		}
 		return true;
+	}
+
+	public static int getAmountOfMaterial(Inventory i, Material material){
+		int amount = 0;
+		for(ItemStack itemStack : i.all(material).values()){
+			amount+= itemStack.getAmount();
+		}
+		return amount;
 	}
 }

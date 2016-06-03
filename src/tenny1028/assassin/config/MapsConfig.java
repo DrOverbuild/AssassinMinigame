@@ -39,7 +39,9 @@ public class MapsConfig {
 		List<MapProtection> mapProtections = new ArrayList<>();
 
 		for(String map:getMaps()){
-			mapProtections.add(new MapProtection(this,map));
+			if(mapIsProtected(map)) {
+				mapProtections.add(new MapProtection(this, map));
+			}
 		}
 
 		return mapProtections;
@@ -63,6 +65,10 @@ public class MapsConfig {
 			saveConfig();
 		}
 		return getConfig().getBoolean("maps."+mapName+".deadly-liquid",false);
+	}
+
+	public boolean mapIsProtected(String mapName){
+		return getConfig().contains("maps."+mapName+".protection.first") && getConfig().contains("maps."+mapName+".protection.second");
 	}
 
 	public void removeMap(String mapName){
