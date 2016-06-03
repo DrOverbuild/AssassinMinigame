@@ -82,6 +82,8 @@ public class MessagesConfig {
 		config.addDefault("map.no-maps","&bThere are no configured maps.");
 		config.addDefault("map.chosen","&bMap &l%map&b has been chosen.");
 		config.addDefault("map.during-game","&cYou cannot change the map during the game.");
+		config.addDefault("protection.protected","&cThis area is protected.");
+		config.addDefault("protection.cannot-leave","&cYou cannot leave this area while playing Assassin");
 		config.addDefault("leaderboard.header","&b------------ &lTop 5 Scores For Assassin&r&b ------------");
 		config.addDefault("leaderboard.element","&b&l%player&r: %points points");
 		config.addDefault("leaderboard.divider","&b ................");

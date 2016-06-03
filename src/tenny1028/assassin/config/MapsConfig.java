@@ -9,7 +9,9 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import tenny1028.assassin.AssassinMinigame;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,7 +24,7 @@ public class MapsConfig {
 		this.plugin = plugin;
 	}
 
-	private FileConfiguration getConfig(){
+	public FileConfiguration getConfig(){
 		return plugin.getConfig();
 	}
 
@@ -31,6 +33,16 @@ public class MapsConfig {
 			return Collections.emptySet();
 		}
 		return getConfig().getConfigurationSection("maps").getKeys(false);
+	}
+
+	public List<MapProtection> getMapsProtections(){
+		List<MapProtection> mapProtections = new ArrayList<>();
+
+		for(String map:getMaps()){
+			mapProtections.add(new MapProtection(this,map));
+		}
+
+		return mapProtections;
 	}
 
 	public Location getMapSpawn(String mapName){
@@ -58,7 +70,7 @@ public class MapsConfig {
 		saveConfig();
 	}
 
-	private void saveConfig(){
+	public void saveConfig(){
 		plugin.saveConfig();
 	}
 

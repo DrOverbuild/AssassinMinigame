@@ -19,15 +19,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import tenny1028.assassin.AssassinMinigame;
 import tenny1028.assassin.GameControl;
+import tenny1028.assassin.config.MapProtection;
 import tenny1028.assassin.config.MessagesConfig;
 
 import java.util.Collections;
@@ -286,6 +291,112 @@ public class PlayerEvents implements Listener {
 						e.getTo().getBlock().getType().equals(Material.LAVA)) {
 					killPlayer(e.getPlayer(), null);
 				}
+				}
+			}
+		}
+
+		if(controller.getGameControl().isCurrentlyInProgress() && controller.playerIsPlayingAssassin(e.getPlayer())) {
+			MapProtection protection = new MapProtection(controller.getMapsConfig(), controller.getGameControl().getCurrentMap());
+			if (protection.restrictPlayers()) {
+				if (!protection.locationIsInProtectedArea(e.getTo())) {
+					e.getPlayer().sendMessage(controller.formatMessage("map.protected"));
+					e.setCancelled(false);
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void onPlayerInteract(PlayerInteractEvent e){
+		if(e.getClickedBlock() != null){
+			if(e.getClickedBlock().getType().equals(Material.BED)){
+				if(controller.playerIsPlayingAssassin(e.getPlayer())){
+					e.setCancelled(true);
+					return;
+				}
+			}
+		}
+
+		if(e.getPlayer().hasPermission("assassin.op")){
+			if(e.getItem() != null){
+				if(e.getItem().getType().equals(Material.BLAZE_ROD)){
+					if(e.getItem().hasItemMeta() && e.getItem().getItemMeta().getDisplayName().startsWith(ChatColor.AQUA + "" + ChatColor.BOLD)
+							&& e.getItem().getItemMeta().getDisplayName().endsWith(" Protection Tool")){
+						String map = e.getItem().getItemMeta().getDisplayName().split(" ")[0];
+						if(map.length() > 8){
+							map = map.substring(4,map.length() - 4);
+						}
+
+						if(!controller.getMapsConfig().hasMap(map)){
+							e.getPlayer().sendMessage(ChatColor.RED + "Map '" + map + "' does not exist.");
+							e.setCancelled(true);
+							return;
+						}
+
+						if(e.getAction().equals(Action.LEFT_CLICK_BLOCK)){
+							new MapProtection(controller.getMapsConfig(),map).setLocation1(e.getClickedBlock().getLocation());
+							e.getPlayer().sendMessage(ChatColor.GRAY + "Location 1 set!");
+							e.setCancelled(true);
+						}
+
+						if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
+							new MapProtection(controller.getMapsConfig(),map).setLocation2(e.getClickedBlock().getLocation());
+							e.getPlayer().sendMessage(ChatColor.GRAY + "Location 2 set!");
+							e.setCancelled(true);
+						}
+					}
+				}
+			}
+		}
+
+		if(!e.getPlayer().hasPermission("assassin.op")) {
+			if (e.getClickedBlock() != null) {
+				for (MapProtection protection : controller.getMapsConfig().getMapsProtections()) {
+					if (!protection.allowInteraction()) {
+						if (protection.locationIsInProtectedArea(e.getClickedBlock().getLocation())) {
+							e.getPlayer().sendMessage(controller.formatMessage("map.protected"));
+							e.setCancelled(false);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void onEntitySpawn(EntitySpawnEvent e){
+		for(MapProtection protection : controller.getMapsConfig().getMapsProtections()){
+			if(!protection.allowMobSpawn()){
+				if(protection.locationIsInProtectedArea(e.getLocation())){
+					e.setCancelled(true);
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void onBlockBreak(BlockBreakEvent e){
+		if(!e.getPlayer().hasPermission("assassin.op")) {
+			for (MapProtection protection : controller.getMapsConfig().getMapsProtections()) {
+				if (!protection.allowWorldModification()) {
+					if (protection.locationIsInProtectedArea(e.getBlock().getLocation())) {
+						e.getPlayer().sendMessage(controller.formatMessage("map.protected"));
+						e.setCancelled(true);
+					}
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void onBlockPlace(BlockPlaceEvent e){
+		if(!e.getPlayer().hasPermission("assassin.op")) {
+			for (MapProtection protection : controller.getMapsConfig().getMapsProtections()) {
+				if (!protection.allowWorldModification()) {
+					if (protection.locationIsInProtectedArea(e.getBlock().getLocation())) {
+						e.getPlayer().sendMessage(controller.formatMessage("map.protected"));
+						e.setCancelled(true);
+					}
 				}
 			}
 		}

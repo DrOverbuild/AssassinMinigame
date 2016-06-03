@@ -6,12 +6,15 @@
 package tenny1028.assassin;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import sun.util.resources.cldr.zh.CalendarData_zh_Hans_CN;
@@ -27,17 +30,18 @@ import java.util.*;
  *   - config
  *     - spawn
  *       - lobby
- *       - {maps}
+ *       - {map}
  *     - map (or maps)
  *       - create (or add)
  *       - delete (or delete)
+ *       - protect
  *   - help
  *   - join
  *   - leave
  *   - leaderboards
  *   - maps
  *   - map
- *     - {maps}
+ *     - {map}
  */
 public class AssassinCommand implements CommandExecutor, TabCompleter {
 
@@ -276,6 +280,18 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 				}else{
 					p.sendMessage(ChatColor.RED + "Map '" + args[2] + "' does not exist.");
 				}
+			}else if(args[1].equalsIgnoreCase("protect")){
+				if(!controller.getMapsConfig().hasMap(args[2])){
+					p.sendMessage(ChatColor.RED + "Map '" + args[2] + "' does not exist.");
+					return true;
+				}
+				p.sendMessage(ChatColor.GRAY + "A selection tool has been placed in your inventory. Left click with it to select the first corner, and then right click with it to select the other corner.");
+				ItemStack selectionTool = new ItemStack(Material.BLAZE_ROD);
+				ItemMeta itemMeta = selectionTool.getItemMeta();
+				itemMeta.setDisplayName(ChatColor.AQUA + "" + ChatColor.BOLD + args[2] + ChatColor.RESET + "" + ChatColor.AQUA + " Protection Tool");
+				itemMeta.setLore(Arrays.asList(ChatColor.AQUA + "Use this to protect '" + args[2] + "'."));
+				selectionTool.setItemMeta(itemMeta);
+				p.getInventory().addItem(selectionTool);
 			}
 		}
 
@@ -308,8 +324,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 
 		if(args.length == 2 && args[0].equalsIgnoreCase("map")){
 			completions.addAll(controller.getMapsConfig().getMaps());
-			removeCompletions(completions,args[1]);
-			return completions;
+			return removeCompletions(completions,args[1]);
 		}
 
 		if(args.length == 2 && args[0].equalsIgnoreCase("tp")){
@@ -337,8 +352,14 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 			}else if(args[1].equalsIgnoreCase("map")||args[1].equalsIgnoreCase("maps")){
 				completions.add("create");
 				completions.add("delete");
+				completions.add("protect");
 				return removeCompletions(completions,args[2]);
 			}
+		}
+
+		if(args.length == 4 && args[0].equalsIgnoreCase("config") && args[1].equalsIgnoreCase("map")){
+			completions.addAll(controller.getMapsConfig().getMaps());
+			return removeCompletions(completions,args[3]);
 		}
 
 		return null;
@@ -348,7 +369,7 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 		List<String> newCompletions = new ArrayList<>(completions);
 		Collections.sort(newCompletions);
 		for (String completion : completions) {
-			if(!completion.startsWith(startsWith.toLowerCase())){
+			if(!completion.toLowerCase().startsWith(startsWith.toLowerCase())){
 				newCompletions.remove(completion);
 			}
 		}

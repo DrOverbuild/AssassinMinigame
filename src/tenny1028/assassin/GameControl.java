@@ -67,7 +67,7 @@ public class GameControl {
 			if(controller.getMapsConfig().getMaps().size() < 1){
 				controller.getMapsConfig().setMapSpawn("Default",Bukkit.getWorlds().get(0).getHighestBlockAt(0,0).getLocation());
 				controller.getLogger().info("There are no configured maps, so a Default map at 0,0 has been created.");
-				setCurrentMap("Default");
+				setCurrentMap("Defaults");
 			}else {
 				Random r = new Random();
 				String[] maps = controller.getMapsConfig().getMaps().toArray(new String[]{});
