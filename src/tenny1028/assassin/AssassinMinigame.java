@@ -284,6 +284,10 @@ public class AssassinMinigame extends JavaPlugin{
 
 	public void reloadConfigs(){
 		reloadConfig();
+		GameControl.ITEM_SPAWN_FREQUENCY = getConfig().getInt("scraps.seconds-per-spawn",15);
+		GameControl.NUMBER_OF_ITEMS_TO_SPAWN = getConfig().getInt("scraps.items-per-spawn",4);
+		GameControl.ITEM_SPAWN_DISTANCE = getConfig().getInt("scraps.spawn-radius",20);
+		GameControl.CHANCE_BOW = getConfig().getDouble("scraps.chance-bow",0.4d);
 		messagesConfig = new MessagesConfig(this);
 	}
 

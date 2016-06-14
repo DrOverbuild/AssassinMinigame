@@ -24,9 +24,10 @@ import java.util.*;
  */
 public class GameControl {
 	public static String LORE_MESSAGE = "For use with the Assassin minigame.";
-	public static final int ITEM_SPAWN_DISTANCE = 100;
-	public static final int ITEM_SPAWN_FREQUENCY = 15;
-	public static final int NUMBER_OF_ITEMS_TO_SPAWN = 4;
+	public static int ITEM_SPAWN_DISTANCE = 100;
+	public static int ITEM_SPAWN_FREQUENCY;
+	public static int NUMBER_OF_ITEMS_TO_SPAWN;
+	public static double CHANCE_BOW;
 
 	AssassinMinigame controller;
 	boolean currentlyInProgress;
@@ -42,6 +43,9 @@ public class GameControl {
 
 	public GameControl(AssassinMinigame controller) {
 		this.controller = controller;
+		ITEM_SPAWN_FREQUENCY = controller.getConfig().getInt("scraps.seconds-per-spawn",15);
+		NUMBER_OF_ITEMS_TO_SPAWN = controller.getConfig().getInt("scraps.items-per-spawn",4);
+		CHANCE_BOW = controller.getConfig().getDouble("scraps.chance-bow",0.4d);
 		LORE_MESSAGE = controller.formatMessage("items.lore-message");
 	}
 
@@ -266,18 +270,19 @@ public class GameControl {
 	}
 
 	public void spawnRandomItems(){
-		ItemStack bow = new ItemStack(Material.BOW);
-		ItemMeta bowMeta = bow.getItemMeta();
-		bowMeta.setLore(Collections.singletonList(LORE_MESSAGE));
-		bow.setItemMeta(bowMeta);
-		ItemStack arrow = new ItemStack(Material.ARROW);
-		ItemMeta arrowMeta = arrow.getItemMeta();
-		arrowMeta.setLore(Collections.singletonList(LORE_MESSAGE));
-		arrow.setItemMeta(arrowMeta);
-
 		Random r = new Random();
 
-		double[] centerPoints = {0d,0d,0d};
+		Player[] alivePlayers = alivePlayers().toArray(new Player[]{});
+
+		Player chosen = alivePlayers[r.nextInt(alivePlayers.length)];
+
+		int x = chosen.getLocation().getBlockX() + r.nextInt(ITEM_SPAWN_DISTANCE * 2) - ITEM_SPAWN_DISTANCE;
+		int y = chosen.getLocation().getBlockY() - r.nextInt(ITEM_SPAWN_DISTANCE);
+		int z = chosen.getLocation().getBlockZ() + r.nextInt(ITEM_SPAWN_DISTANCE * 2) - ITEM_SPAWN_DISTANCE;
+
+		Location spawnLocation = new Location(chosen.getWorld(),(double)x,(double)y,(double)z);
+
+		/*double[] centerPoints = {0d,0d,0d};
 
 		World w = null;
 
@@ -296,10 +301,26 @@ public class GameControl {
 		org.bukkit.util.Vector spawnLocationFromPlayer = new Vector(r.nextInt(ITEM_SPAWN_DISTANCE)-ITEM_SPAWN_DISTANCE/2,
 				r.nextInt(ITEM_SPAWN_DISTANCE/2),
 				r.nextInt(ITEM_SPAWN_DISTANCE)-ITEM_SPAWN_DISTANCE/2);
-		Location spawnLocation = center.add(spawnLocationFromPlayer);
+		Location spawnLocation = center.add(spawnLocationFromPlayer);*/
 
-		spawnLocation.getWorld().dropItemNaturally(spawnLocation, (r.nextInt(10)>6)?bow:arrow);
+		spawnLocation.getWorld().dropItemNaturally(spawnLocation, (r.nextDouble()>CHANCE_BOW)?bow():arrow());
 
+	}
+
+	public static ItemStack bow(){
+		ItemStack bow = new ItemStack(Material.BOW);
+		ItemMeta bowMeta = bow.getItemMeta();
+		bowMeta.setLore(Collections.singletonList(LORE_MESSAGE));
+		bow.setItemMeta(bowMeta);
+		return bow;
+	}
+
+	public static ItemStack arrow(){
+		ItemStack arrow = new ItemStack(Material.ARROW);
+		ItemMeta arrowMeta = arrow.getItemMeta();
+		arrowMeta.setLore(Collections.singletonList(LORE_MESSAGE));
+		arrow.setItemMeta(arrowMeta);
+		return arrow;
 	}
 
 	public void setCurrentMap(String currentMap) {

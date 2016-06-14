@@ -28,6 +28,10 @@ public class MainConfig {
 		getConfig().addDefault("cooldown.bow",1);
 		getConfig().addDefault("cooldown.arrow-refresh",1);
 		getConfig().addDefault("cooldown.max-arrows",3);
+		getConfig().addDefault("scraps.seconds-per-spawn",15);
+		getConfig().addDefault("scraps.items-per-spawn",4);
+		getConfig().addDefault("scraps.spawn-radius",20);
+		getConfig().addDefault("scraps.chance-bow",0.4d);
 		getConfig().options().copyDefaults(true);
 
 		updateConfig();

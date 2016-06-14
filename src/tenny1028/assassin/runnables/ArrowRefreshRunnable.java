@@ -39,13 +39,8 @@ public class ArrowRefreshRunnable extends BukkitRunnable{
 			if(p.getInventory().contains(Material.BOW)){
 				ItemStack bow = p.getInventory().getItem(p.getInventory().first(Material.BOW));
 				if(bow.hasItemMeta() && bow.getItemMeta().hasDisplayName() && bow.getItemMeta().getDisplayName().equals(plugin.formatMessage("items.archers-bow"))){
-					plugin.getLogger().info("Amount of arrows: " + Util.getAmountOfMaterial(p.getInventory(),Material.ARROW));
 					if(Util.getAmountOfMaterial(p.getInventory(),Material.ARROW) < maxArrows){
-						ItemStack arrow = new ItemStack(Material.ARROW);
-						ItemMeta arrowMeta = arrow.getItemMeta();
-						arrowMeta.setLore(Collections.singletonList(GameControl.LORE_MESSAGE));
-						arrow.setItemMeta(arrowMeta);
-						p.getInventory().addItem(arrow);
+						p.getInventory().addItem(GameControl.arrow());
 					}
 				}
 			}
