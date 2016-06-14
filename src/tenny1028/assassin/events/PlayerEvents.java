@@ -145,18 +145,13 @@ public class PlayerEvents implements Listener {
 	@EventHandler
 	public void onArrowShoot(ProjectileLaunchEvent e){
 		if(e.getEntityType().equals(EntityType.ARROW)){
-			controller.getLogger().info("Type is arrow!");
 			if(e.getEntity().getShooter() instanceof Player){
-				controller.getLogger().info("Shooter is player!");
 				Player shooter = (Player)e.getEntity().getShooter();
 				if(controller.playerIsPlayingAssassin(shooter)){
-					controller.getLogger().info("Shooter is playing Assassin!");
 					if(controller.getGameControl().getCooldownPlayers().contains(shooter.getName())) {
-						controller.getLogger().info("Shooter is on cooldown.");
 						e.setCancelled(true);
 					}else{
-						controller.getLogger().info("Beginning cooldown for shooter!");
-						final int cooldownTime = controller.getMainConfig().getBowCooldown();
+						final int cooldownTime = controller.getMainConfig().getBowCooldown() * 20;
 						if (cooldownTime > 0) {
 							new CooldownRunnable(cooldownTime, shooter, controller).runTaskTimer(controller, 1, 1);
 						}

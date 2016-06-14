@@ -22,8 +22,6 @@ public class MainConfig {
 	public MainConfig(AssassinMinigame plugin) {
 		this.plugin = plugin;
 
-		plugin.saveDefaultConfig();
-
 		getConfig().addDefault("countdown.game",600);
 		getConfig().addDefault("countdown.pregame",10);
 		getConfig().addDefault("cooldown.sword",2);
@@ -33,6 +31,8 @@ public class MainConfig {
 		getConfig().options().copyDefaults(true);
 
 		updateConfig();
+
+		saveConfig();
 	}
 
 	public int getArrowRefresh(){
