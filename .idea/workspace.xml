@@ -6,12 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c28b3a1e-d01f-45c4-9c41-4ee906bdb3d3" name="Default" comment="Make scraps spawning configurable">
+    <list default="true" id="c28b3a1e-d01f-45c4-9c41-4ee906bdb3d3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/AssassinMinigame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/runnables/ArrowRefreshRunnable.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/runnables/ArrowRefreshRunnable.java" />
     </list>
     <ignored path="AssassinMinigame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,19 +33,19 @@
       <file leaf-file-name="GameControl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="322" column="21" selection-start-line="322" selection-start-column="21" selection-end-line="322" selection-end-column="21" />
+            <state relative-caret-position="210">
+              <caret line="159" column="34" selection-start-line="159" selection-start-column="34" selection-end-line="159" selection-end-column="34" />
               <folding>
                 <element signature="docComment;class#GameControl#0" expanded="false" />
                 <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
                 <element signature="class#3129:3523" expanded="false" />
                 <element signature="method#run#0;class#3129:3523" expanded="false" />
-                <element signature="e#5422#5471#0" expanded="false" />
-                <element signature="class#5900:6603" expanded="false" />
-                <element signature="method#run#0;class#5900:6603" expanded="false" />
+                <element signature="e#5262#5311#0" expanded="false" />
+                <element signature="class#5740:6443" expanded="false" />
+                <element signature="method#run#0;class#5740:6443" expanded="false" />
                 <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
                 <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-                <element signature="e#6996#7025#0" expanded="false" />
+                <element signature="e#6836#6865#0" expanded="false" />
                 <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
                 <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
               </folding>
@@ -789,7 +786,14 @@
       <option name="project" value="LOCAL" />
       <updated>1465934572635</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Make scraps spawning configurable">
+      <created>1465945625529</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1465945625530</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -912,12 +916,12 @@
             <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
             <element signature="class#3129:3523" expanded="false" />
             <element signature="method#run#0;class#3129:3523" expanded="false" />
-            <element signature="e#5422#5471#0" expanded="false" />
-            <element signature="class#5900:6603" expanded="false" />
-            <element signature="method#run#0;class#5900:6603" expanded="false" />
+            <element signature="e#5262#5311#0" expanded="false" />
+            <element signature="class#5740:6443" expanded="false" />
+            <element signature="method#run#0;class#5740:6443" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
             <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#6996#7025#0" expanded="false" />
+            <element signature="e#6836#6865#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
           </folding>
@@ -995,12 +999,12 @@
             <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
             <element signature="class#3129:3523" expanded="false" />
             <element signature="method#run#0;class#3129:3523" expanded="false" />
-            <element signature="e#5422#5471#0" expanded="false" />
-            <element signature="class#5900:6603" expanded="false" />
-            <element signature="method#run#0;class#5900:6603" expanded="false" />
+            <element signature="e#5262#5311#0" expanded="false" />
+            <element signature="class#5740:6443" expanded="false" />
+            <element signature="method#run#0;class#5740:6443" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
             <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#6996#7025#0" expanded="false" />
+            <element signature="e#6836#6865#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
           </folding>
@@ -1084,12 +1088,12 @@
             <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
             <element signature="class#3129:3523" expanded="false" />
             <element signature="method#run#0;class#3129:3523" expanded="false" />
-            <element signature="e#5422#5471#0" expanded="false" />
-            <element signature="class#5900:6603" expanded="false" />
-            <element signature="method#run#0;class#5900:6603" expanded="false" />
+            <element signature="e#5262#5311#0" expanded="false" />
+            <element signature="class#5740:6443" expanded="false" />
+            <element signature="method#run#0;class#5740:6443" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
             <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#6996#7025#0" expanded="false" />
+            <element signature="e#6836#6865#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
           </folding>
@@ -1166,12 +1170,12 @@
             <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
             <element signature="class#3129:3523" expanded="false" />
             <element signature="method#run#0;class#3129:3523" expanded="false" />
-            <element signature="e#5422#5471#0" expanded="false" />
-            <element signature="class#5900:6603" expanded="false" />
-            <element signature="method#run#0;class#5900:6603" expanded="false" />
+            <element signature="e#5262#5311#0" expanded="false" />
+            <element signature="class#5740:6443" expanded="false" />
+            <element signature="method#run#0;class#5740:6443" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
             <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#6996#7025#0" expanded="false" />
+            <element signature="e#6836#6865#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
           </folding>
@@ -1248,12 +1252,12 @@
             <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
             <element signature="class#3129:3523" expanded="false" />
             <element signature="method#run#0;class#3129:3523" expanded="false" />
-            <element signature="e#5422#5471#0" expanded="false" />
-            <element signature="class#5900:6603" expanded="false" />
-            <element signature="method#run#0;class#5900:6603" expanded="false" />
+            <element signature="e#5262#5311#0" expanded="false" />
+            <element signature="class#5740:6443" expanded="false" />
+            <element signature="method#run#0;class#5740:6443" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
             <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#6996#7025#0" expanded="false" />
+            <element signature="e#6836#6865#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
           </folding>
@@ -1482,19 +1486,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="322" column="21" selection-start-line="322" selection-start-column="21" selection-end-line="322" selection-end-column="21" />
+        <state relative-caret-position="210">
+          <caret line="159" column="34" selection-start-line="159" selection-start-column="34" selection-end-line="159" selection-end-column="34" />
           <folding>
             <element signature="docComment;class#GameControl#0" expanded="false" />
             <element signature="method#startCountdown#0;class#GameControl#0" expanded="false" />
             <element signature="class#3129:3523" expanded="false" />
             <element signature="method#run#0;class#3129:3523" expanded="false" />
-            <element signature="e#5422#5471#0" expanded="false" />
-            <element signature="class#5900:6603" expanded="false" />
-            <element signature="method#run#0;class#5900:6603" expanded="false" />
+            <element signature="e#5262#5311#0" expanded="false" />
+            <element signature="class#5740:6443" expanded="false" />
+            <element signature="method#run#0;class#5740:6443" expanded="false" />
             <element signature="docComment;method#endGame#0;class#GameControl#0" expanded="false" />
             <element signature="method#endGame#0;class#GameControl#0" expanded="false" />
-            <element signature="e#6996#7025#0" expanded="false" />
+            <element signature="e#6836#6865#0" expanded="false" />
             <element signature="method#alivePlayers#0;class#GameControl#0" expanded="false" />
             <element signature="method#setCurrentMap#0;class#GameControl#0" expanded="false" />
           </folding>

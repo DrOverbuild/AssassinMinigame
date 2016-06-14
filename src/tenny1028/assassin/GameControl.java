@@ -157,10 +157,7 @@ public class GameControl {
 		archersBowMeta.setLore(Collections.singletonList(LORE_MESSAGE));
 		archersBow.setItemMeta(archersBowMeta);
 
-		ItemStack arrow = new ItemStack(Material.ARROW);
-		ItemMeta arrowMeta = arrow.getItemMeta();
-		arrowMeta.setLore(Collections.singletonList(LORE_MESSAGE));
-		arrow.setItemMeta(arrowMeta);
+		ItemStack arrow = arrow();
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 		ItemMeta swordMeta = sword.getItemMeta();
