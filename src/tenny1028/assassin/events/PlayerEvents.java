@@ -128,7 +128,7 @@ public class PlayerEvents implements Listener {
 		if(arrow.getShooter() instanceof Player){
 			damager = (Player)arrow.getShooter();
 
-			if(controller.playerIsPlayingAssassin(damager) && !controller.getGameControl().getCooldownPlayers().contains(damager.getName())){
+			if(controller.playerIsPlayingAssassin(damager)){
 				e.setCancelled(true);
 			}else{
 				damager = null;
