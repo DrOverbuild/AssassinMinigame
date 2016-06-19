@@ -225,6 +225,9 @@ public class GameControl {
 				String message = controller.formatMessage("winner.assassin","%assassin",assassin.getName());
 				controller.broadcastToAllPlayersPlayingAssassin(message);
 				controller.addToAssassinScore(assassin,5);
+			} else {
+				String message = controller.formatMessage("winner.none");
+				controller.broadcastToAllPlayersPlayingAssassin(message);
 			}
 
 			Location lobbySpawn = controller.getMainConfig().getLobbySpawn();

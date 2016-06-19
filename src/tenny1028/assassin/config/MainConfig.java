@@ -32,11 +32,18 @@ public class MainConfig {
 		getConfig().addDefault("scraps.items-per-spawn",4);
 		getConfig().addDefault("scraps.spawn-radius",20);
 		getConfig().addDefault("scraps.chance-bow",0.4d);
+		getConfig().addDefault("events.civilian-shoot-civilian.kill-damager",true);
+		getConfig().addDefault("events.civilian-shoot-civilian.kill-damaged",true);
+		getConfig().addDefault("announce-death-messages",false);
 		getConfig().options().copyDefaults(true);
 
 		updateConfig();
 
 		saveConfig();
+	}
+
+	public boolean getAnnounceDeathMessages() {
+		return getConfig().getBoolean("announce-death-messages",false);
 	}
 
 	public int getArrowRefresh(){

@@ -174,6 +174,12 @@ public class AssassinCommand implements CommandExecutor, TabCompleter {
 			if(args[0].equalsIgnoreCase("start")){
 				controller.getGameControl().startCountdown(p);
 				return true;
+			}else if (args[0].equalsIgnoreCase("end")){
+				if(p.hasPermission("assassin.op")){
+					controller.getGameControl().endGame(-1);
+				}else{
+					p.sendMessage(controller.formatMessage("commands.no-permission"));
+				}
 			}
 		}
 

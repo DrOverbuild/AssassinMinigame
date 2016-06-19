@@ -57,8 +57,9 @@ public class MessagesConfig {
 		config.addDefault("death.civilian-killed-civilian","&b%killed was shot by %killer.");
 		config.addDefault("death.civilian-died","&b%p died.");
 		config.addDefault("death.assassin-died","&bThe Assassin, &c%p&b, died.");
-		config.addDefault("winner.civilians","&bThe civilians won!");
-		config.addDefault("winner.assassin","&bThe assassin, &c%assassin&b, has won!");
+		config.addDefault("winner.civilians","&bThe civilians win!");
+		config.addDefault("winner.assassin","&bThe assassin, &c%assassin&b, wins!");
+		config.addDefault("winner.none","&bNo one wins.");
 		config.addDefault("countdown.pregame","&aThe assassin will be chosen in &e%secondss");
 		config.addDefault("commands.cannot-use","&cYou cannot use that command while playing Assassin!");
 		config.addDefault("commands.no-permission","&cYou do not have permission.");
