@@ -138,8 +138,12 @@ public class PlayerEvents implements Listener {
 		if(damaged == null || damager == null) return;
 
 		if(controller.getGameControl().isCurrentlyInProgress()&&!damaged.equals(damager)) {
-			if (controller.getGameControl().getAssassin().getName().equals(damaged.getName()) ||
-					controller.getConfig().getBoolean("events.civilian-shoot-civilian.kill-damaged",true)){
+			if (controller.getGameControl().getAssassin().getName().equals(damaged.getName())){
+				killPlayer(damaged, damager);
+				return;
+			}
+
+			if (controller.getConfig().getBoolean("events.civilian-shoot-civilian.kill-damaged",true)){
 				killPlayer(damaged, damager);
 			}else if(controller.getConfig().getBoolean("events.civilian-shoot-civilian-kill-damager",true)){
 				killPlayer(damager, null);
@@ -210,8 +214,9 @@ public class PlayerEvents implements Listener {
 					if (controller.alivePlayers().size() == 1) {
 						controller.getGameControl().endGame(1);
 						return;
+					}else {
+						killPlayer(damager, null);
 					}
-					killPlayer(damager, null);
 				}
 			}
 		}else if(controller.getGameControl().getAssassin().getName().equals(damaged.getName())){
