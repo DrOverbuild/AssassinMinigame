@@ -7,11 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c28b3a1e-d01f-45c4-9c41-4ee906bdb3d3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/AssassinCommand.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/AssassinCommand.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/GameControl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/events/PlayerEvents.class" afterPath="$PROJECT_DIR$/out/production/AssassinMinigame/tenny1028/assassin/events/PlayerEvents.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tenny1028/assassin/events/PlayerEvents.java" afterPath="$PROJECT_DIR$/src/tenny1028/assassin/events/PlayerEvents.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
     </list>
     <ignored path="AssassinMinigame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,7 +33,7 @@
       <file leaf-file-name="GameControl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
+            <state relative-caret-position="2055">
               <caret line="241" column="57" selection-start-line="241" selection-start-column="57" selection-end-line="241" selection-end-column="57" />
               <folding>
                 <element signature="docComment;class#GameControl#0" expanded="false" />
@@ -61,11 +58,7 @@
             <state relative-caret-position="2070">
               <caret line="180" column="83" selection-start-line="180" selection-start-column="83" selection-end-line="180" selection-end-column="83" />
               <folding>
-                <element signature="e#0#13089#0" expanded="false" />
-                <element signature="imports" expanded="false" />
                 <element signature="docComment;class#AssassinCommand#0" expanded="false" />
-                <element signature="e#1160#1161#0" expanded="false" />
-                <element signature="e#1195#1196#0" expanded="false" />
                 <element signature="e#4385#4488#0" expanded="false" />
                 <element signature="e#4796#4894#0" expanded="false" />
                 <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
@@ -111,10 +104,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerEvents.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlayerEvents.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/events/PlayerEvents.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="811">
+            <state relative-caret-position="695">
               <caret line="147" column="18" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="18" />
               <folding>
                 <element signature="docComment;class#PlayerEvents#0" expanded="false" />
@@ -134,6 +127,16 @@
                 <element signature="method#onBlockBreak#0;class#PlayerEvents#0" expanded="false" />
                 <element signature="method#onBlockPlace#0;class#PlayerEvents#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/plugin.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -200,7 +203,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/TitleManager.java" />
         <option value="$PROJECT_DIR$/src/config.yml" />
-        <option value="$PROJECT_DIR$/src/plugin.yml" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/config/MapProtection.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/events/CooldownRunnable.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/Util.java" />
@@ -213,6 +215,7 @@
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/config/MainConfig.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/assassin/events/PlayerEvents.java" />
+        <option value="$PROJECT_DIR$/src/plugin.yml" />
       </list>
     </option>
   </component>
@@ -869,7 +872,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466364346492</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Fixed a bug">
+      <created>1467057090509</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1467057090509</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -884,7 +894,6 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28419656" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17795485" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -893,13 +902,14 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976552" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28419656" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32802126" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -914,7 +924,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add localization for GameControl.java" />
     <MESSAGE value="Add localization for AssassinMinigame.java" />
     <MESSAGE value="Make the minimum players configurable" />
     <MESSAGE value="Small improvements:&#10;* Added /assassin config reload so the configurations can be reloaded without restarting the server&#10;* Teleport all players to lobby at end of game instead of to assassin&#10;* Small fix in default messages.yml" />
@@ -939,7 +948,8 @@
     <MESSAGE value="Fixed bow problem" />
     <MESSAGE value="Added /assassin end" />
     <MESSAGE value="Fixed #11" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed #11" />
+    <MESSAGE value="Fixed a bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -965,11 +975,7 @@
         <state relative-caret-position="0">
           <caret line="98" column="13" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
           <folding>
-            <element signature="e#0#13089#0" expanded="false" />
-            <element signature="imports" expanded="false" />
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
-            <element signature="e#1160#1161#0" expanded="false" />
-            <element signature="e#1195#1196#0" expanded="false" />
             <element signature="e#4385#4488#0" expanded="false" />
             <element signature="e#4796#4894#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
@@ -1049,11 +1055,7 @@
         <state relative-caret-position="0">
           <caret line="98" column="13" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
           <folding>
-            <element signature="e#0#13089#0" expanded="false" />
-            <element signature="imports" expanded="false" />
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
-            <element signature="e#1160#1161#0" expanded="false" />
-            <element signature="e#1195#1196#0" expanded="false" />
             <element signature="e#4385#4488#0" expanded="false" />
             <element signature="e#4796#4894#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
@@ -1139,11 +1141,7 @@
         <state relative-caret-position="0">
           <caret line="98" column="13" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
           <folding>
-            <element signature="e#0#13089#0" expanded="false" />
-            <element signature="imports" expanded="false" />
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
-            <element signature="e#1160#1161#0" expanded="false" />
-            <element signature="e#1195#1196#0" expanded="false" />
             <element signature="e#4385#4488#0" expanded="false" />
             <element signature="e#4796#4894#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
@@ -1229,11 +1227,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13089#0" expanded="false" />
-            <element signature="imports" expanded="false" />
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
-            <element signature="e#1160#1161#0" expanded="false" />
-            <element signature="e#1195#1196#0" expanded="false" />
             <element signature="e#4385#4488#0" expanded="false" />
             <element signature="e#4796#4894#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
@@ -1312,11 +1306,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13089#0" expanded="false" />
-            <element signature="imports" expanded="false" />
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
-            <element signature="e#1160#1161#0" expanded="false" />
-            <element signature="e#1195#1196#0" expanded="false" />
             <element signature="e#4385#4488#0" expanded="false" />
             <element signature="e#4796#4894#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
@@ -1404,13 +1394,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/Util.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -1482,11 +1465,7 @@
         <state relative-caret-position="2070">
           <caret line="180" column="83" selection-start-line="180" selection-start-column="83" selection-end-line="180" selection-end-column="83" />
           <folding>
-            <element signature="e#0#13089#0" expanded="false" />
-            <element signature="imports" expanded="false" />
             <element signature="docComment;class#AssassinCommand#0" expanded="false" />
-            <element signature="e#1160#1161#0" expanded="false" />
-            <element signature="e#1195#1196#0" expanded="false" />
             <element signature="e#4385#4488#0" expanded="false" />
             <element signature="e#4796#4894#0" expanded="false" />
             <element signature="method#getTopFivePlayersFromScoreboard#0;class#AssassinCommand#0" expanded="false" />
@@ -1529,7 +1508,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/GameControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
+        <state relative-caret-position="2055">
           <caret line="241" column="57" selection-start-line="241" selection-start-column="57" selection-end-line="241" selection-end-column="57" />
           <folding>
             <element signature="docComment;class#GameControl#0" expanded="false" />
@@ -1549,7 +1528,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/assassin/events/PlayerEvents.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="811">
+        <state relative-caret-position="695">
           <caret line="147" column="18" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="18" />
           <folding>
             <element signature="docComment;class#PlayerEvents#0" expanded="false" />
@@ -1569,6 +1548,14 @@
             <element signature="method#onBlockBreak#0;class#PlayerEvents#0" expanded="false" />
             <element signature="method#onBlockPlace#0;class#PlayerEvents#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
